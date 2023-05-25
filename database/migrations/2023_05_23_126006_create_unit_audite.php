@@ -18,10 +18,12 @@ return new class extends Migration
             $table->string('nama_ketua_tim');
             $table->string('nip_ketua_tim');
             $table->unsignedBigInteger('id_periode');
+            $table->unsignedBigInteger('id_prodi');
             // $table->unsignedBigInteger('id_ruang_lingkup');
             $table->timestamps();
 
             $table->foreign('id_periode')->references('id')->on('periode_audit');
+            $table->foreign('id_prodi')->references('id')->on('unit_prodi');
             // $table->foreign('id_ruang_lingkup')->references('id')->on('riwayat_ruang_lingkup')->onDelete('set null');
         });
     }
