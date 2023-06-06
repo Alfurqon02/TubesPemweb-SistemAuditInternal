@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use League\CommonMark\Extension\Table\Table;
 
-class Unit extends Model
+class Auditor extends Model
 {
     use HasFactory;
 
-    protected $table = 'unit';
-    protected $guarded = ['id', 'parent_id', 'nama'];
+    protected $table = 'auditor';
+    protected $guarded = ['id'];
 }

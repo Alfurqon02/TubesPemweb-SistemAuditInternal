@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Unit extends Model
+class PeriodeAudit extends Model
 {
     use HasFactory;
+    protected  $table = 'periode_audit';
 
-    protected $table = 'unit';
-    protected $guarded = ['id', 'parent_id', 'nama'];
+    protected $guarded = ['id'];
 }
