@@ -7,17 +7,17 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class UnitProdi extends Seeder
+class Unit extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $nama = ['Pusat',
+        $nama = ['Fakultas Ilmu Teknologi dan Sains Data',
         'Informatika',
         'Sains Data',
-        'Pusat',
+        'Fakultas Ilmu Pengetahuan Alam',
         'Matematika',
         'Statistika',
         'Kimia',
@@ -25,7 +25,7 @@ class UnitProdi extends Seeder
         'Biologi',
         'Farmasi',
         'Ilmu Lingkungan',
-        'Pusat',
+        'Fakultas Teknik',
         'Arsitektur',
         'Perencanaan Wilayah dan Kota',
         'Teknik Elektro',
@@ -33,17 +33,17 @@ class UnitProdi extends Seeder
         'Teknik Mesin',
         'Teknik Sipil',
         'Teknik Industri',
-        'Pusat',
+        'Fakultas Seni Rupa dan Desain',
         'Desain Interior',
         'Desain Komunikasi Visual',
         'Kriya Seni',
         'Seni Rupa Murni',
-        'Pusat',
+        'Fakultas Keolahragaan',
         'Pendidikan Jasmani, Kesehatan, dan Rekreasi',
         'Pendidikan Kepelatihan Olahraga',
-        'Pusat',
+        'Fakultas Psikologi',
         'Psikologi',
-        'Pusat',
+        'Fakultas Pertanian',
         'Agribisnis',
         'Agroteknologi',
         'Ilmu Tanah',
@@ -51,28 +51,28 @@ class UnitProdi extends Seeder
         'Peternakan',
         'Ilmu Teknologi Pangan',
         'Pengelolaan Hutan',
-        'Pusat',
+        'Fakultas Kedokteran',
         'Kedokteran',
-        'Pusat',
+        'Fakultas Ilmu Sosial dan Politik',
         'Hubungan Internasional',
         'Administrasi Negara',
         'Ilmu Komunikasi',
         'Sosiologi',
-        'Pusat',
+        'Fakultas Ekonomi dan Bisnis',
         'Akuntansi',
         'Ekonomi Pembangunan',
         'Manajemen',
         'Bisnis Digital',
-        'Pusat',
+        'Fakultas Hukum',
         'Ilmu Hukum',
-        'Pusat',
+        'Fakultas Ilmu Budaya',
         'Ilmu Sejarah',
         'Sastra Arab',
         'Sastra Daerah',
         'Sastra Indonesia',
         'Sastra Inggris',
         'Bahasa Mandarin dan Kebudayaan Tiongkok',
-        'Pusat',
+        'Fakultas Keguruan dan Ilmu Pendidikan',
         'Bimbingan dan Konseling',
         'Pendidikan Administrasi Perkantoran',
         'Pendidikan Akuntansi',
@@ -98,14 +98,13 @@ class UnitProdi extends Seeder
         'Pendidikan TIK',
         'Pendidikan Teknik Mesin',
         ];
-
-        $id_fakultas = [1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 8, 8, 8, 8, 8, 9, 9, 9, 9, 9, 10, 10, 11, 11, 11, 11, 11, 11, 11, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12];
-        for($i = 0; $i < sizeof($nama) && $i < sizeof($id_fakultas); $i++){
-            DB::table('unit_prodi')->insert([
+        $parent_id = [1, 1, 1, 4, 4, 4, 4, 4, 4, 4, 4, 12, 12, 12, 12, 12, 12, 12, 12, 20, 20, 20, 20, 20, 25, 25, 25, 28, 28, 30, 30, 30, 30, 30, 30, 30, 30, 38, 38, 40, 40, 40, 40, 40, 45, 45, 45, 45, 45, 50, 50, 52, 52, 52, 52, 52, 52, 52, 59, 59, 59, 59, 59, 59, 59, 59, 59, 59];
+        for($i = 0; $i < sizeof($nama) && $i < sizeof($parent_id); $i++){
+            DB::table('unit')->insert([
+                'parent_id' => $parent_id[$i],
                 'nama' => $nama[$i],
                 'ketua_unit' => null,
                 'nip_ketua_unit' => null,
-                'id_fakultas' => $id_fakultas[$i],
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]);
