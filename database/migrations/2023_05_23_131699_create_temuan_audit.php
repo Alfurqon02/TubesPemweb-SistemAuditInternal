@@ -19,11 +19,11 @@ return new class extends Migration
             $table->text('akibat');
             $table->text('kriteria');
             $table->text('rekomendasi_follow_up');
-            $table->unsignedBigInteger('id_unit');
+            $table->unsignedBigInteger('id_ruang_lingkup');
             $table->unsignedBigInteger('id_parameter');
             $table->timestamps();
 
-            $table->foreign('id_unit')->references('id')->on('unit_audite');
+            $table->foreign('id_ruang_lingkup')->references('id')->on('ruang_lingkup_unit');
             $table->foreign('id_parameter')->references('id')->on('parameter_standar_ruang_lingkup');
         });
     }

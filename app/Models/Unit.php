@@ -11,4 +11,9 @@ class Unit extends Model
 
     protected $table = 'unit';
     protected $guarded = ['id', 'parent_id', 'nama'];
+
+    public function unitAudit(){
+        return $this->hasMany(UnitAudit::class, 'id_unit', 'id');
+    }
+
 }

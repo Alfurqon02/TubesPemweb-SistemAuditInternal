@@ -11,4 +11,12 @@ class RuangLingkupUnit extends Model
     protected $table = 'ruang_lingkup_unit';
 
     protected $guarded = ['id'];
+
+    public function unitAudit(){
+        return $this->belongsTo(UnitAudit::class, 'id_unit', 'id');
+    }
+
+    public function temuanAudit(){
+        return $this->hasMany(UnitAudit::class, 'id_ruang_lingkup', 'id');
+    }
 }

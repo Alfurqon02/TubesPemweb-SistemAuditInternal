@@ -12,4 +12,8 @@ class Feedback extends Model
     protected $table = 'feedback_audit';
 
     protected $guarded = ['id'];
+
+    public function temuanAudit(){
+        return $this->belongsTo(TemuanAudit::class, 'id_temuan', 'id');
+    }
 }

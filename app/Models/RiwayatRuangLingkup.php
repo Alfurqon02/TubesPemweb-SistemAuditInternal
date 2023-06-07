@@ -11,4 +11,14 @@ class RiwayatRuangLingkup extends Model
     protected $table = 'riwayat_ruang_lingkup';
 
     protected $guarded = ['id'];
+
+    public function temuanAudit(){
+        return $this->belongsToMany(TemuanAudit::class, 'id_temuan', 'id');
+    }
+
+    public function parameterStandarRuangLingkup(){
+        return $this->belongsToMany(ParameterStandar::class, 'id_parameter', 'id');
+    }
+
+
 }

@@ -12,4 +12,11 @@ class Auditor extends Model
 
     protected $table = 'auditor';
     protected $guarded = ['id'];
+
+    public function unitAudit(){
+        return $this->belongsToMany(UnitAudit::class, 'id_unit', 'id');
+    }
+    public function user(){
+        return $this->belongsToMany(User::class, 'id_user', 'id');
+    }
 }
