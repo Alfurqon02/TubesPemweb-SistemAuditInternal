@@ -12,7 +12,7 @@ class UnitAuditController extends Controller
      */
     public function index()
     {
-        //
+        return view('setup.setup-unit.index');
     }
 
     /**

@@ -1,7 +1,12 @@
 <?php
 
+use App\Models\Role;
 use App\Models\Unit;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UnitController;
+use App\Http\Controllers\UnitAuditController;
+use App\Http\Controllers\PeriodeAuditController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +29,15 @@ Route::get('/register', function () {
     return view('authentication.register');
 });
 
-Route::get('/unit', function () {
-    dd(Unit::find(1)->unitAudit);
+Route::get('/dashboard', function () {
+    return view('dashboard.index');
 });
+
+
+Route::get('/setup-audit', function () {
+    return view('setup.index');
+})->name('setup-audit');
+
+Route::resource('/setup-audit/setup-periode', PeriodeAuditController::class);
+
+Route::resource('/setup-audit/setup-unit', UnitAuditController::class);

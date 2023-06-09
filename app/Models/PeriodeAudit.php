@@ -13,6 +13,6 @@ class PeriodeAudit extends Model
     protected $guarded = ['id'];
 
     public function unitAudit(){
-        return $this->hasOne(UnitAudit::class, 'id_periode', 'id');
+        return $this->hasMany(UnitAudit::class, 'id_periode', 'id');
     }
 }
