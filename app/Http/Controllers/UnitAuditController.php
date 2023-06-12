@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\UnitAudit;
+use App\Models\PeriodeAudit;
+use App\Models\Unit;
 use Illuminate\Http\Request;
 
 class UnitAuditController extends Controller
@@ -12,7 +14,9 @@ class UnitAuditController extends Controller
      */
     public function index()
     {
-        return view('setup.setup-unit.index');
+        return view('setup.setup-unit.index', [
+            'periode' => PeriodeAudit::all()
+        ]);
     }
 
     /**
@@ -20,7 +24,9 @@ class UnitAuditController extends Controller
      */
     public function create()
     {
-        //
+        return view('setup.setup-unit.create', [
+            'unit' => Unit::all()
+        ]);
     }
 
     /**

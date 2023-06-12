@@ -10,6 +10,10 @@
                         <form method="post" action="{{ route('setup-periode.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
+                                <label for="nama_audit">Nama Audit</label>
+                                <input id="nama_audit" class="form-control" type="text" name="nama_audit"/>
+                            </div>
+                            <div class="mb-3">
                                 <label for="tanggal_audit">Tanggal Audit</label>
                                 <input id="tanggal_audit" class="form-control" type="date" name="tanggal_audit"/>
                             </div>
@@ -40,4 +44,5 @@
             </div>
         </div>
     </div>
+    
 @endsection

@@ -39,5 +39,6 @@ Route::get('/setup-audit', function () {
 })->name('setup-audit');
 
 Route::resource('/setup-audit/setup-periode', PeriodeAuditController::class);
+Route::get('/setup-audit/setup-periode/{setup_periode}/download', [PeriodeAuditController::class, 'download'])->name('setup-periode-download');
 
 Route::resource('/setup-audit/setup-unit', UnitAuditController::class);

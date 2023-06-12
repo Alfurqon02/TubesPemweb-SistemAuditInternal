@@ -37,9 +37,9 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>Nama Audit</th>
                                     <th>Tanggal Audit</th>
                                     <th>Ketua SPI</th>
-                                    <th>NIP</th>
                                     <th>File SK</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -48,10 +48,10 @@
                                 @foreach ($periode as $p)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $p->nama_audit }}</td>
                                         <td>{{ $p->tanggal_audit }}</td>
                                         <td>{{ $p->nama_ketua_spi }}</td>
-                                        <td>{{ $p->nip_ketua_spi }}</td>
-                                        <td><a href="{{ $p->file_sk }}">Unduh File</a></td>
+                                        <td><a href="{{ route('setup-periode-download', $p->id) }}">Unduh File</a></td>
                                         <td>
                                             <a href="" class="badge bg-info"><svg xmlns="http://www.w3.org/2000/svg"
                                                     class="icon icon-tabler icon-tabler-eye" width="20" height="20"
@@ -76,8 +76,8 @@
                                                     </path>
                                                     <path d="M16 5l3 3"></path>
                                                 </svg></a>
-                                            <button class="badge bg-danger border-0" onclick="" data-bs-toggle="modal" data-bs-target="#confirmDelete"><svg
-                                                    xmlns="http://www.w3.org/2000/svg"
+                                            <button class="badge bg-danger border-0" data-id="{{ $p->id }}" onclick="" data-bs-toggle="modal"
+                                                data-bs-target="#confirmDelete"><svg xmlns="http://www.w3.org/2000/svg"
                                                     class="icon icon-tabler icon-tabler-trash-x" width="20"
                                                     height="20" viewBox="0 0 24 24" stroke-width="2"
                                                     stroke="currentColor" fill="none" stroke-linecap="round"
@@ -89,7 +89,6 @@
                                                     <path d="M10 12l4 4m0 -4l-4 4"></path>
                                                 </svg>
                                             </button>
-                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -101,24 +100,32 @@
         </div>
     </div>
 
-    {{-- confirm delete modal --}}
-    <div class="modal fade" id="confirmDelete" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <form action="{{ route('setup-periode.destroy', $p->id) }}" method="POST" class="d-inline"
-                    id="form-delete">
-                    @csrf
-                    @method('delete')
-                    <div class="modal-body"
-                        style="height: 100px; display: flex; align-items: center; justify-content: center;">
-                        <h5 class="text-center">Apakah Anda yakin ingin menghapus?</h5>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tidak</button>
-                        <button type="submit" class="btn btn-primary">Ya</button>
-                    </div>
-                </form>
+        {{-- confirm delete modal --}}
+        <div class="modal fade" id="confirmDelete" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <form action="" method="POST" class="d-inline"
+                        id="form-delete">
+                        @csrf
+                        @method('delete')
+                        <div class="modal-body"
+                            style="height: 100px; display: flex; align-items: center; justify-content: center;">
+                            <h5 class="text-center">Apakah Anda yakin ingin menghapus?</h5>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tidak</button>
+                            <button type="submit" class="btn btn-primary">Ya</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
+
+<script>
+    $('#confirmDelete').on('show.bs.modal', function (e) {
+        var id_periode = $(e.relatedTarget).data('id');
+        console.log(id_periode);
+        $(e.currentTarget).find('#form-delete').attr('action', '/setup-audit/setup-periode/' + id_periode);
+    })
+</script>
 @endsection

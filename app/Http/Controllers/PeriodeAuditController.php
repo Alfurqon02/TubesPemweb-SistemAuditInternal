@@ -32,6 +32,7 @@ class PeriodeAuditController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
+            'nama_audit' => 'required',
             'tanggal_audit' => 'required',
             'no_sk_tugas_audit' => 'required|max:64',
             'file_sk' => 'required|file',
@@ -76,6 +77,7 @@ class PeriodeAuditController extends Controller
     public function update(Request $request, PeriodeAudit $setup_periode)
     {
         $validatedData = $request->validate([
+            'nama_audit' => 'required',
             'tanggal_audit' => 'required',
             'no_sk_tugas_audit' => 'required|max:64',
             'file_sk' => 'file',
@@ -109,5 +111,10 @@ class PeriodeAuditController extends Controller
 
         $setup_periode->delete();
         return redirect(route('setup-periode.index'))->with('success', 'Periode Telah dihapus!');
+    }
+
+    public function download(PeriodeAudit $setup_periode){
+        $headers = "SK " . $setup_periode->nama_audit . ".pdf";
+        return Storage::download($setup_periode->file_sk, $headers);
     }
 }

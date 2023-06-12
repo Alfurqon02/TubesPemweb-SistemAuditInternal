@@ -19,19 +19,14 @@
                             </div>
                         </div>
                         {{-- Add Content Here! --}}
-                        <a href="{{ route('setup-periode.create') }}" class="btn btn-primary d-flex align-items-center"
-                            style="width: 20%"><svg xmlns="http://www.w3.org/2000/svg"
-                                class="me-9 icon icon-tabler icon-tabler-calendar-plus" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
+                        <a href="{{ route('setup-unit.create') }}" class="btn btn-primary d-flex align-items-center"
+                            style="width: 17%"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home-up me-9" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <path d="M12.5 21h-6.5a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v5"></path>
-                                <path d="M16 3v4"></path>
-                                <path d="M8 3v4"></path>
-                                <path d="M4 11h16"></path>
-                                <path d="M16 19h6"></path>
-                                <path d="M19 16v6"></path>
-                            </svg>Masukkan Unit</a>
+                                <path d="M9 21v-6a2 2 0 0 1 2 -2h2c.641 0 1.212 .302 1.578 .771"></path>
+                                <path d="M20.136 11.136l-8.136 -8.136l-9 9h2v7a2 2 0 0 0 2 2h6.344"></path>
+                                <path d="M19 22v-6"></path>
+                                <path d="M22 19l-3 -3l-3 3"></path>
+                             </svg>Masukkan Unit</a>
 
                         <table id="example" class="table table-striped mt-9" style="width:100%">
                             <thead>
@@ -45,13 +40,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @foreach ($periode as $p)
+                                @foreach ($periode as $p)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $p->nama_audit }}</td>
                                         <td>{{ $p->tanggal_audit }}</td>
                                         <td>{{ $p->nama_ketua_spi }}</td>
-                                        <td>{{ $p->nip_ketua_spi }}</td>
-                                        <td><a href="{{ $p->file_sk }}">Unduh File</a></td>
+                                        <td><a href="{{ route('setup-periode-download', $p->id) }}">Unduh File</a></td>
                                         <td>
                                             <a href="" class="badge bg-info"><svg xmlns="http://www.w3.org/2000/svg"
                                                     class="icon icon-tabler icon-tabler-eye" width="20" height="20"
@@ -76,8 +71,8 @@
                                                     </path>
                                                     <path d="M16 5l3 3"></path>
                                                 </svg></a>
-                                            <button class="badge bg-danger border-0" onclick="" data-bs-toggle="modal" data-bs-target="#confirmDelete"><svg
-                                                    xmlns="http://www.w3.org/2000/svg"
+                                            <button class="badge bg-danger border-0" data-id="{{ $p->id }}" onclick="" data-bs-toggle="modal"
+                                                data-bs-target="#confirmDelete"><svg xmlns="http://www.w3.org/2000/svg"
                                                     class="icon icon-tabler icon-tabler-trash-x" width="20"
                                                     height="20" viewBox="0 0 24 24" stroke-width="2"
                                                     stroke="currentColor" fill="none" stroke-linecap="round"
@@ -89,10 +84,9 @@
                                                     <path d="M10 12l4 4m0 -4l-4 4"></path>
                                                 </svg>
                                             </button>
-                                            </form>
                                         </td>
                                     </tr>
-                                @endforeach --}}
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

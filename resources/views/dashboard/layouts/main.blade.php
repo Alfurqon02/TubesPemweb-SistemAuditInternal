@@ -9,6 +9,11 @@
   <link rel="stylesheet" href="{{ url("/assets/css/styles.min.css") }}" />
   {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css"> --}}
+  <script
+  src="https://code.jquery.com/jquery-3.7.0.slim.min.js"
+  integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE="
+  crossorigin="anonymous"></script>
+  <script src="{{ url("/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js") }}"></script>
 </head>
 
 <body>
@@ -22,13 +27,14 @@
       @yield('container')
     </div>
   </div>
-  <script src="{{ url("/assets/libs/jquery/dist/jquery.min.js") }}"></script>
-  <script src="{{ url("/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js") }}"></script>
+  {{-- <script src="{{ url("/assets/libs/jquery/dist/jquery.min.js") }}"></script> --}}
   <script src="{{ url("/assets/js/sidebarmenu.js") }}"></script>
   <script src="{{ url("/assets/js/app.min.js") }}"></script>
   <script src="{{ url("/assets/libs/apexcharts/dist/apexcharts.min.js") }}"></script>
   <script src="{{ url("/assets/libs/simplebar/dist/simplebar.js") }}"></script>
   <script src="{{ url("/assets/js/dashboard.js") }}"></script>
+
+
 </body>
 
 </html>

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('periode_audit', function (Blueprint $table) {
             $table->id();
+            $table->text('nama_audit');
             $table->date('tanggal_audit');
             $table->string('no_sk_tugas_audit');
             $table->string('file_sk')->nullable();

@@ -11,6 +11,12 @@
                             @method('PUT')
                             @csrf
                             <div class="mb-3">
+                                <label for="nama_audit">Nama Audit</label>
+                                <input id="nama_audit" class="form-control @error('nama_audit')
+                                    is-invalid
+                                @enderror" type="date" name="nama_audit" required value="{{ old('nama_audit', $p->nama_audit) }}"/>
+                            </div>
+                            <div class="mb-3">
                                 <label for="tanggal_audit">Tanggal Audit</label>
                                 <input id="tanggal_audit" class="form-control @error('tanggal_audit')
                                     is-invalid
