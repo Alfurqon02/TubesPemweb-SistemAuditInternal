@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('feedback_audit', function (Blueprint $table) {
+        Schema::create('role', function (Blueprint $table) {
             $table->id();
-            $table->text('klarifikasi');
-            $table->date('tanggal_kesanggupan_penyelesaian');
-            $table->unsignedBigInteger('id_temuan');
+            $table->string('nama');
             $table->timestamps();
-
-            $table->foreign('id_temuan')->references('id')->on('temuan_audit');
         });
     }
 
@@ -27,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('feedback_audit');
+        Schema::dropIfExists('role');
     }
 };

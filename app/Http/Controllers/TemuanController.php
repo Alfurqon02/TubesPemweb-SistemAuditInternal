@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Temuan;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreTemuanRequest;
+use App\Http\Requests\UpdateTemuanRequest;
 
 class TemuanController extends Controller
 {
@@ -26,7 +27,7 @@ class TemuanController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreTemuanRequest $request)
     {
         //
     }
@@ -50,7 +51,7 @@ class TemuanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Temuan $temuan)
+    public function update(UpdateTemuanRequest $request, Temuan $temuan)
     {
         //
     }

@@ -21,7 +21,6 @@ class User extends Seeder
         $nama = ['Rama', 'Azzam', 'Furqon', 'Hilda'];
         for($i = 0; $i < sizeof($nama); $i++){
             DB::table('users')->insert([
-                'fullname' => $nama[$i],
                 'email' => strtolower($nama[$i] . '@staff.uns.ac.id'),
                 'username' => strtolower('08510185572' . $i),
                 'password' => Hash::make(strtolower($nama[$i]. '_123')),
@@ -31,5 +30,5 @@ class User extends Seeder
         }
     }
 
-    
+
 }

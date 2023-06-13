@@ -11,15 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ruang_lingkup_unit', function (Blueprint $table) {
+        Schema::create('unit', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_unit');
+            $table->unsignedBigInteger('parent_id');
             $table->string('nama');
-            // $table->unsignedBigInteger('id_ruang_lingkup');
             $table->timestamps();
-
-            $table->foreign('id_unit')->references('id')->on('unit_audite');
-            // $table->foreign('id_ruang_lingkup')->references('id')->on('riwayat_ruang_lingkup')->onDelete('set null');
         });
     }
 
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ruang_lingkup_unit');
+        Schema::dropIfExists('units');
     }
 };

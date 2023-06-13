@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('auditor', function (Blueprint $table) {
+        Schema::create('unit_audit', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_user');
+            $table->unsignedBigInteger('id_periode_audit');
             $table->unsignedBigInteger('id_unit');
             $table->timestamps();
 
-            $table->foreign('id_user')->references('id')->on('users');
-            $table->foreign('id_unit')->references('id')->on('unit_audite');
+            $table->foreign('id_periode_audit')->references('id')->on('periode_audit');
+            $table->foreign('id_unit')->references('id')->on('unit');
         });
     }
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('auditor');
+        Schema::dropIfExists('unit_audits');
     }
 };

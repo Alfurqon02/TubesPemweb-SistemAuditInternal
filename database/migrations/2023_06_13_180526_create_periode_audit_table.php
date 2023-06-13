@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('periode_audit', function (Blueprint $table) {
             $table->id();
-            $table->text('nama_audit');
-            $table->date('tanggal_audit');
-            $table->string('no_sk_tugas_audit');
-            $table->string('file_sk')->nullable();
+            $table->string('nama');
+            $table->date('tanggal_mulai');
+            $table->date('tanggal_selesai');
+            $table->string('no_sk_audit');
+            $table->string('file_sk');
             $table->date('tanggal_sk');
             $table->string('nama_ketua_spi');
             $table->string('nip_ketua_spi');
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('periode_audit');
+        Schema::dropIfExists('periode_audits');
     }
 };
