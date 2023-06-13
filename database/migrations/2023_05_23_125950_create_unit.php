@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('unit_fakultas', function (Blueprint $table) {
+        Schema::create('unit', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('parent_id');
             $table->string('nama');
             $table->string('ketua_unit')->nullable();
             $table->string('nip_ketua_unit')->nullable();
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('unit_fakultas');
+        Schema::dropIfExists('unit');
     }
 };

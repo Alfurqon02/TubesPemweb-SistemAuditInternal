@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('periode_audit', function (Blueprint $table) {
             $table->id();
+            $table->text('nama_audit');
             $table->date('tanggal_audit');
             $table->string('no_sk_tugas_audit');
-            $table->string('file_sk');
+            $table->string('file_sk')->nullable();
             $table->date('tanggal_sk');
             $table->string('nama_ketua_spi');
             $table->string('nip_ketua_spi');
