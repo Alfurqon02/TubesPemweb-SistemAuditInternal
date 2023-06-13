@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!doctype html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -18,7 +18,7 @@
             <!-- Sidebar scroll-->
             <div>
                 <div class="brand-logo d-flex align-items-center justify-content-between">
-                    <a href="./index.html" class="text-nowrap logo-img">
+                    <a href="{{ route('dashboard') }}" class="text-nowrap logo-img">
                         <img src="../assets/images/logos/dark-logo.svg" width="180" alt="" />
                     </a>
                     <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
@@ -33,14 +33,14 @@
                             <span class="hide-menu">Home</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./index.html" aria-expanded="false">
+                            <a class="sidebar-link" href="welcome" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-layout-dashboard"></i>
                                 </span>
                                 <span class="hide-menu">Dashboard</span>
                             </a>
                         </li>
-                        <li class="nav-small-cap">
+                        <!-- <li class="nav-small-cap">
                             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                             <span class="hide-menu">UI COMPONENTS</span>
                         </li>
@@ -83,13 +83,13 @@
                                 </span>
                                 <span class="hide-menu">Typography</span>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-small-cap">
                             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                             <span class="hide-menu">AUTH</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+                            <a class="sidebar-link" href="login" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-login"></i>
                                 </span>
@@ -97,14 +97,14 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./authentication-register.html" aria-expanded="false">
+                            <a class="sidebar-link" href="register" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-user-plus"></i>
                                 </span>
                                 <span class="hide-menu">Register</span>
                             </a>
                         </li>
-                        <li class="nav-small-cap">
+                        <!-- <li class="nav-small-cap">
                             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                             <span class="hide-menu">EXTRA</span>
                         </li>
@@ -123,9 +123,9 @@
                                 </span>
                                 <span class="hide-menu">Sample Page</span>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
-                    <div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-5 rounded">
+                    <!-- <div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-5 rounded">
                         <div class="d-flex">
                             <div class="unlimited-access-title me-3">
                                 <h6 class="fw-semibold fs-4 mb-6 text-dark w-85">Upgrade to pro</h6>
@@ -136,7 +136,7 @@
                                 <img src="../assets/images/backgrounds/rocket.png" alt="" class="img-fluid">
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </nav>
                 <!-- End Sidebar navigation -->
             </div>
@@ -175,7 +175,7 @@
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up"
                                     aria-labelledby="drop2">
                                     <div class="message-body">
-                                        <a href="javascript:void(0)"
+                                        <!-- <a href="javascript:void(0)"
                                             class="d-flex align-items-center gap-2 dropdown-item">
                                             <i class="ti ti-user fs-6"></i>
                                             <p class="mb-0 fs-3">My Profile</p>
@@ -189,9 +189,11 @@
                                             class="d-flex align-items-center gap-2 dropdown-item">
                                             <i class="ti ti-list-check fs-6"></i>
                                             <p class="mb-0 fs-3">My Task</p>
-                                        </a>
-                                        <a href="./authentication-login.html"
-                                            class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                                        </a> -->
+                                        <a href="{{ route('login') }}"
+                                            class="btn btn-outline-primary mx-3 mt-2 d-block">Login</a>
+                                        <a href="register"
+                                            class="btn btn-outline-primary mx-3 mt-2 d-block">Register</a>
                                     </div>
                                 </div>
                             </li>

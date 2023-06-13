@@ -23,7 +23,7 @@ class User extends Seeder
             DB::table('users')->insert([
                 'fullname' => $nama[$i],
                 'email' => strtolower($nama[$i] . '@staff.uns.ac.id'),
-                'username' => strtolower('08510185572' . $i),
+                'username' => $nama[$i],
                 'password' => Hash::make(strtolower($nama[$i]. '_123')),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
