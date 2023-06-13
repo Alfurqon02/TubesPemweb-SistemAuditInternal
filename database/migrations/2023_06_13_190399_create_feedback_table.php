@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('riwayat_ruang_lingkup', function (Blueprint $table) {
+        Schema::create('feedback', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_parameter');
             $table->unsignedBigInteger('id_temuan');
+            $table->text('klarifikasi');
+            $table->date('tanggal_kesanggupan');
+            $table->text('rencana_tindak_lanjut');
             $table->timestamps();
-
-            $table->foreign('id_parameter')->references('id')->on('parameter_standar_ruang_lingkup');
-            $table->foreign('id_temuan')->references('id')->on('temuan_audit');
         });
     }
 
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('riwayat_ruang_lingkup');
+        Schema::dropIfExists('feedback');
     }
 };

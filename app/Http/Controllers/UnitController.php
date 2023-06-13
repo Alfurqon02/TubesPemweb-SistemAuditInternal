@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Unit;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreUnitRequest;
+use App\Http\Requests\UpdateUnitRequest;
 
 class UnitController extends Controller
 {
@@ -12,8 +13,7 @@ class UnitController extends Controller
      */
     public function index()
     {
-        $x=Unit::find(1);
-        dd($x->unitAudit);
+        //
     }
 
     /**
@@ -27,7 +27,7 @@ class UnitController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUnitRequest $request)
     {
         //
     }
@@ -51,7 +51,7 @@ class UnitController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Unit $unit)
+    public function update(UpdateUnitRequest $request, Unit $unit)
     {
         //
     }

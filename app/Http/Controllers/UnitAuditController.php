@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\UnitAudit;
-use App\Models\PeriodeAudit;
-use App\Models\Unit;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreUnitAuditRequest;
+use App\Http\Requests\UpdateUnitAuditRequest;
 
 class UnitAuditController extends Controller
 {
@@ -14,9 +13,7 @@ class UnitAuditController extends Controller
      */
     public function index()
     {
-        return view('setup.setup-unit.index', [
-            'periode' => PeriodeAudit::all()
-        ]);
+        //
     }
 
     /**
@@ -24,15 +21,13 @@ class UnitAuditController extends Controller
      */
     public function create()
     {
-        return view('setup.setup-unit.create', [
-            'unit' => Unit::all()
-        ]);
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUnitAuditRequest $request)
     {
         //
     }
@@ -56,7 +51,7 @@ class UnitAuditController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, UnitAudit $unitAudit)
+    public function update(UpdateUnitAuditRequest $request, UnitAudit $unitAudit)
     {
         //
     }

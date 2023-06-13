@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class PeriodeAudit extends Model
 {
     use HasFactory;
-    protected  $table = 'periode_audit';
+
+    protected $table = 'periode_audit';
 
     protected $guarded = ['id'];
 
     public function unitAudit(){
-        return $this->hasMany(UnitAudit::class, 'id_periode', 'id');
+        return $this->hasMany(UnitAudit::class, 'id_periode_audit', 'id');
     }
 }

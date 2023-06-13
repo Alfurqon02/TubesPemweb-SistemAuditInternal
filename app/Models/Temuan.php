@@ -9,19 +9,15 @@ class Temuan extends Model
 {
     use HasFactory;
 
-    protected $table = 'temuan_audit';
+    protected $table = 'temuan';
 
     protected $guarded = ['id'];
 
-    public function ruangLingkupUnit(){
-        return $this->hasMany(RuangLingkupUnit::class, 'id_ruang_lingkup', 'id');
+    public function feedback(){
+        return $this->hasMany(Feedback::class, 'id_temuan', 'id');
     }
 
-    public function feedbackAudit(){
-        return $this->hasMany(FeedbackAudit::class, 'id_temuan', 'id');
-    }
-
-    public function parameterStandar(){
-        return $this->hasMany(RiwayatRuangLingkup::class, 'id_temuan', 'id');
+    public function unitAudit(){
+        return $this->belongsTo(UnitAudit::class, 'id_unit_audit', 'id');
     }
 }

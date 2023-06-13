@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Unit extends Model
+class TimAuditor extends Model
 {
     use HasFactory;
 
-    protected $table = 'unit';
+    protected $table = 'tim_auditor';
 
     protected $guarded = ['id'];
 
     public function unitAudit(){
-        return $this->hasMany(UnitAudit::class, 'unit_id', 'id');
+        return $this->belongsTo(UnitAudit::class, 'id_unit_audit', 'id');
     }
 }

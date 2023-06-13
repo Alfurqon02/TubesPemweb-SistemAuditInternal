@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\RuangLingkupUnit;
-use Illuminate\Http\Request;
+use App\Models\TimAuditor;
+use App\Http\Requests\StoreTimAuditorRequest;
+use App\Http\Requests\UpdateTimAuditorRequest;
 
-class RuangLingkupUnitController extends Controller
+class TimAuditorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,7 +27,7 @@ class RuangLingkupUnitController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreTimAuditorRequest $request)
     {
         //
     }
@@ -34,7 +35,7 @@ class RuangLingkupUnitController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(RuangLingkupUnit $ruangLingkupUnit)
+    public function show(TimAuditor $timAuditor)
     {
         //
     }
@@ -42,7 +43,7 @@ class RuangLingkupUnitController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(RuangLingkupUnit $ruangLingkupUnit)
+    public function edit(TimAuditor $timAuditor)
     {
         //
     }
@@ -50,7 +51,7 @@ class RuangLingkupUnitController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, RuangLingkupUnit $ruangLingkupUnit)
+    public function update(UpdateTimAuditorRequest $request, TimAuditor $timAuditor)
     {
         //
     }
@@ -58,7 +59,7 @@ class RuangLingkupUnitController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(RuangLingkupUnit $ruangLingkupUnit)
+    public function destroy(TimAuditor $timAuditor)
     {
         //
     }
