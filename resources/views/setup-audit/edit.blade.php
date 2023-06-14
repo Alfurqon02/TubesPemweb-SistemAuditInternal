@@ -7,26 +7,32 @@
                 <h5 class="card-title fw-semibold mb-4">Edit Periode Audit</h5>
                 <div class="card">
                     <div class="card-body">
-                        <form method="post" action="{{ route('setup-periode.update', $p->id) }}" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('setup-audit.update', $p->id) }}" enctype="multipart/form-data">
                             @method('PUT')
                             @csrf
                             <div class="mb-3">
-                                <label for="nama_audit">Nama Audit</label>
-                                <input id="nama_audit" class="form-control @error('nama_audit')
+                                <label for="nama">Nama Audit</label>
+                                <input id="nama" class="form-control @error('nama')
                                     is-invalid
-                                @enderror" type="date" name="nama_audit" required value="{{ old('nama_audit', $p->nama_audit) }}"/>
+                                @enderror" type="text" name="nama" required value="{{ old('nama', $p->nama) }}"/>
                             </div>
                             <div class="mb-3">
-                                <label for="tanggal_audit">Tanggal Audit</label>
-                                <input id="tanggal_audit" class="form-control @error('tanggal_audit')
+                                <label for="tanggal_mulai">Tanggal Mulai Audit</label>
+                                <input id="tanggal_mulai" class="form-control @error('tanggal_mulai')
                                     is-invalid
-                                @enderror" type="date" name="tanggal_audit" required value="{{ old('tanggal_audit', $p->tanggal_audit) }}"/>
+                                @enderror" type="date" name="tanggal_mulai" required value="{{ old('tanggal_mulai', $p->tanggal_mulai) }}"/>
                             </div>
                             <div class="mb-3">
-                                <label for="no_sk_tugas_audit" class="form-label">No SK Tugas Audit</label>
-                                <input type="text" class="form-control @error('no_sk_tugas_audit')
+                                <label for="tanggal_selesai">Tanggal Selesai Audit</label>
+                                <input id="tanggal_selesai" class="form-control @error('tanggal_selesai')
                                     is-invalid
-                                @enderror" id="no_sk_tugas_audit" name="no_sk_tugas_audit" required value="{{ old('no_sk_tugas_audit', $p->no_sk_tugas_audit) }}">
+                                @enderror" type="date" name="tanggal_selesai" required value="{{ old('tanggal_selesai', $p->tanggal_selesai) }}"/>
+                            </div>
+                            <div class="mb-3">
+                                <label for="no_sk_audit" class="form-label">No SK Tugas Audit</label>
+                                <input type="text" class="form-control @error('no_sk_audit')
+                                    is-invalid
+                                @enderror" id="no_sk_audit" name="no_sk_audit" required value="{{ old('no_sk_audit', $p->no_sk_audit) }}">
                             </div>
                             <div class="mb-3">
                                 <label for="file_sk" class="form-label">Upload File SK</label>

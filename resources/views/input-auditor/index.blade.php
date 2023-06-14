@@ -19,26 +19,14 @@
                             </div>
                         </div>
                         {{-- Add Content Here! --}}
-                        <a href="{{ route('setup-periode.create') }}" class="btn btn-primary d-flex align-items-center"
-                            style="width: 20%"><svg xmlns="http://www.w3.org/2000/svg"
-                                class="me-9 icon icon-tabler icon-tabler-calendar-plus" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <path d="M12.5 21h-6.5a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v5"></path>
-                                <path d="M16 3v4"></path>
-                                <path d="M8 3v4"></path>
-                                <path d="M4 11h16"></path>
-                                <path d="M16 19h6"></path>
-                                <path d="M19 16v6"></path>
-                            </svg>Buat Periode Baru</a>
-
+                        
                         <table id="example" class="table table-striped mt-9" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>#</th>
                                     <th>Nama Audit</th>
-                                    <th>Tanggal Audit</th>
+                                    <th>Tanggal Mulai Audit</th>
+                                    <th>Tanggal Selesai Audit</th>
                                     <th>Ketua SPI</th>
                                     <th>File SK</th>
                                     <th>Aksi</th>
@@ -48,10 +36,11 @@
                                 @foreach ($periode as $p)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $p->nama_audit }}</td>
-                                        <td>{{ $p->tanggal_audit }}</td>
+                                        <td>{{ $p->nama }}</td>
+                                        <td>{{ $p->tanggal_mulai }}</td>
+                                        <td>{{ $p->tanggal_selesai }}</td>
                                         <td>{{ $p->nama_ketua_spi }}</td>
-                                        <td><a href="{{ route('setup-periode-download', $p->id) }}">Unduh File</a></td>
+                                        <td><a href="{{ route('setup-audit.download', $p->id) }}">Unduh File</a></td>
                                         <td>
                                             <a href="" class="badge bg-info"><svg xmlns="http://www.w3.org/2000/svg"
                                                     class="icon icon-tabler icon-tabler-eye" width="20" height="20"
@@ -63,7 +52,7 @@
                                                         d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6">
                                                     </path>
                                                 </svg></a>
-                                            <a href="{{ route('setup-periode.edit', $p->id) }}"
+                                            <a href="{{ route('setup-audit.edit', $p->id) }}"
                                                 class="badge bg-warning"><svg xmlns="http://www.w3.org/2000/svg"
                                                     class="icon icon-tabler icon-tabler-edit" width="20" height="20"
                                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
@@ -125,7 +114,7 @@
     $('#confirmDelete').on('show.bs.modal', function (e) {
         var id_periode = $(e.relatedTarget).data('id');
         console.log(id_periode);
-        $(e.currentTarget).find('#form-delete').attr('action', '/setup-audit/setup-periode/' + id_periode);
+        $(e.currentTarget).find('#form-delete').attr('action', 'setup-audit/' + id_periode);
     })
 </script>
 @endsection

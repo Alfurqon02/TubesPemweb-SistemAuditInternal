@@ -16,4 +16,8 @@ class Unit extends Model
     public function unitAudit(){
         return $this->hasMany(UnitAudit::class, 'unit_id', 'id');
     }
+
+    public function periodeAudit(){
+        return $this->belongsToMany(PeriodeAudit::class, 'unit_audit', 'id_periode_audit', 'id_unit');
+    }
 }

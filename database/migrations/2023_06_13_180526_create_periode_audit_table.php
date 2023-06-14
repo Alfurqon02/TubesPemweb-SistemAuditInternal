@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('tanggal_mulai');
             $table->date('tanggal_selesai');
             $table->string('no_sk_audit');
-            $table->string('file_sk');
+            $table->string('file_sk')->nullable();
             $table->date('tanggal_sk');
             $table->string('nama_ketua_spi');
             $table->string('nip_ketua_spi');

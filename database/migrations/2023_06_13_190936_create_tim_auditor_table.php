@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('tim_auditor', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
+            $table->string('tanggal_audit');
             $table->string('nama_ketua_tim');
             $table->string('nip_ketua_tim');
             $table->unsignedBigInteger('id_unit_audit');

@@ -2,21 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TimAuditor;
-use App\Models\PeriodeAudit;
-use App\Http\Requests\StoreTimAuditorRequest;
-use App\Http\Requests\UpdateTimAuditorRequest;
+use Illuminate\Http\Request;
 
-class TimAuditorController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('input-auditor.index', [
-            'periode' => PeriodeAudit::all()
-        ]);
+        //
     }
 
     /**
@@ -30,7 +25,7 @@ class TimAuditorController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTimAuditorRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -38,7 +33,7 @@ class TimAuditorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(TimAuditor $timAuditor)
+    public function show(string $id)
     {
         //
     }
@@ -46,7 +41,7 @@ class TimAuditorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(TimAuditor $timAuditor)
+    public function edit(string $id)
     {
         //
     }
@@ -54,7 +49,7 @@ class TimAuditorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTimAuditorRequest $request, TimAuditor $timAuditor)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -62,7 +57,7 @@ class TimAuditorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(TimAuditor $timAuditor)
+    public function destroy(string $id)
     {
         //
     }

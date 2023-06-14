@@ -22,7 +22,7 @@ class UnitAudit extends Model
     }
 
     public function periodeAudit(){
-        return $this->belongsToMany(PeriodeAudit::class, 'id_periode_audit', 'id');
+        return $this->belongsToMany(PeriodeAudit::class,'id_periode_audit', 'id');
     }
 
     public function unit(){
