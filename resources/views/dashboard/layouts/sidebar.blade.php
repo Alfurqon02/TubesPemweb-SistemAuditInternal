@@ -2,42 +2,78 @@
 <aside class="left-sidebar">
     <!-- Sidebar scroll-->
     <div>
-      <div class="brand-logo d-flex align-items-center justify-content-between">
-        <a href="./index.html" class="text-nowrap logo-img">
-          <img src="{{ url("/assets/images/logos/dark-logo.svg") }}" width="180" alt="" />
-        </a>
-        <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
-          <i class="ti ti-x fs-8"></i>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+            <a href="{{ route('dashboard') }}" class="text-nowrap logo-img">
+                <img src="{{ url("/assets/images/logos/dark-logo.svg") }}" width="180" alt="" />
+            </a>
+            <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+                <i class="ti ti-x fs-8"></i>
+            </div>
         </div>
-      </div>
-      <!-- Sidebar navigation-->
-      <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
-        <ul id="sidebarnav">
-          <li class="nav-small-cap">
-            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-            <span class="hide-menu">Home</span>
-          </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="/dashboard" aria-expanded="false">
-              <span>
-                <i class="ti ti-layout-dashboard"></i>
-              </span>
-              <span class="hide-menu">Dashboard</span>
-            </a>
-          </li>
-          <li class="nav-small-cap">
-            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-            <span class="hide-menu">ADMIN</span>
-          </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="/setup-audit" aria-expanded="false">
-              <span>
-                <i class="ti ti-article"></i>
-              </span>
-              <span class="hide-menu">Setup Audit</span>
-            </a>
-          </li>
-          {{-- <li class="sidebar-item">
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+            <ul id="sidebarnav">
+                <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">Home</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/dashboard" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-layout-dashboard"></i>
+                        </span>
+                        <span class="hide-menu">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">ADMINISTRATOR</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/setup-audit" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-article"></i>
+                        </span>
+                        <span class="hide-menu">Setup Audit</span>
+                    </a>
+                </li>
+                <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">KETUA AUDITOR</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/setup-audit" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-article"></i>
+                        </span>
+                        <span class="hide-menu">Input Auditor</span>
+                    </a>
+                </li>
+                <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">AUDITOR</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/setup-audit" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-article"></i>
+                        </span>
+                        <span class="hide-menu">Setup Auditor</span>
+                    </a>
+                </li>
+                <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">AUDITEE</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/setup-audit" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-article"></i>
+                        </span>
+                        <span class="hide-menu">Setup Auditee</span>
+                    </a>
+                </li>
+                {{-- <li class="sidebar-item">
             <a class="sidebar-link" href="./ui-alerts.html" aria-expanded="false">
               <span>
                 <i class="ti ti-alert-circle"></i>
@@ -109,10 +145,10 @@
               <span class="hide-menu">Sample Page</span>
             </a>
           </li> --}}
-        </ul>
-      </nav>
-      <!-- End Sidebar navigation -->
+            </ul>
+        </nav>
+        <!-- End Sidebar navigation -->
     </div>
     <!-- End Sidebar scroll-->
-  </aside>
-  <!--  Sidebar End -->
+</aside>
+<!--  Sidebar End -->
