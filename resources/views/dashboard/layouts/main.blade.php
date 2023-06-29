@@ -7,6 +7,7 @@
   <title>Modernize Free</title>
   <link rel="shortcut icon" type="image/png" href="{{ url("assets/images/logos/favicon.png") }}" />
   <link rel="stylesheet" href="{{ url("/assets/css/styles.min.css") }}" />
+
   {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css"> --}}
   <script
@@ -14,6 +15,11 @@
   integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE="
   crossorigin="anonymous"></script>
   <script src="{{ url("/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js") }}"></script>
+  <script src="{{ asset('assets/js/demo_configurator.js') }}"></script>
+  <script src="{{ asset("assets/js/app.js") }}"></script>
+  <script src="{{ asset('assets/js/autocomplete.min.js') }}"></script>
+  <script src="{{ asset('assets/js/form_autocomplete.js') }}"></script>
+
 </head>
 
 <body>

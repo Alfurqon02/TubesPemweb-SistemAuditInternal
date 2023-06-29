@@ -42,6 +42,8 @@ class SetupAuditController extends Controller
             'nip_ketua_spi' => 'required',
         ]);
 
+        // return $validatedData;
+
         unset($validatedData['file_sk']);
         $periode = PeriodeAudit::create($validatedData);
 

@@ -13,8 +13,8 @@ class Unit extends Model
 
     protected $guarded = ['id'];
 
-    public function unitAudit(){
-        return $this->hasMany(UnitAudit::class, 'unit_id', 'id');
+    public function timAuditor(){
+        return $this->belongsToMany(TimAuditor::class, 'unit_audit', 'id_unit', 'id_tim_auditor');
     }
 
     public function periodeAudit(){

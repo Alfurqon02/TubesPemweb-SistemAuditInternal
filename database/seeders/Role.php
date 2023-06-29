@@ -18,9 +18,9 @@ class Role extends Seeder
      */
     public function run()
     {
-        $roles = ['Administrator', 'Auditor', 'Auditee', 'Ketua Auditor'];
+        $roles = ['Guest','Administrator', 'Auditor', 'Auditee', 'Ketua Auditor'];
         for($i = 0; $i < sizeof($roles); $i++){
-            DB::table('role')->insert([
+            DB::table('roles')->insert([
                 'nama' => $roles[$i],
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
