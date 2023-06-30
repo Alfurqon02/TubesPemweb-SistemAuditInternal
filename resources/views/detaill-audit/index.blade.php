@@ -141,9 +141,9 @@
 
     <script>
         $('#confirmDelete').on('show.bs.modal', function(e) {
-            var id_periode = $(e.relatedTarget).data('id');
-            console.log(id_periode);
-            $(e.currentTarget).find('#form-delete').attr('action', 'setup-audit/' + id_periode);
+            var id_unit_audit = $(e.relatedTarget).data('id');
+            console.log(id_unit_audit);
+            $(e.currentTarget).find('#form-delete').attr('action', 'detail.destroy' + id_unit_audit);
         })
     </script>
 @endsection

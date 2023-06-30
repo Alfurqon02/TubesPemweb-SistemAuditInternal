@@ -107,8 +107,10 @@ class DetailAuditController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PeriodeAudit $periodeAudit)
+    public function destroy(PeriodeAudit $setup_audit, UnitAudit $detail)
     {
-        //
+        return $detail;
+        $detail->delete();
+        return redirect(route('setup-audit.index'))->with('success', 'Audit Telah dihapus!');
     }
 }
