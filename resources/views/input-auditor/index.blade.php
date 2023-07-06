@@ -15,18 +15,19 @@
                     <div class="card-body">
                         <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
                             <div class="mb-3 mb-sm-0">
-                                <h5 class="card-title fw-semibold">Setup Periode Audit</h5>
+                                <h5 class="card-title fw-semibold">Input Auditor</h5>
                             </div>
                         </div>
                         {{-- Add Content Here! --}}
-                        
+
                         <table id="example" class="table table-striped mt-9" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>#</th>
                                     <th>Nama Audit</th>
-                                    <th>Tanggal Mulai Audit</th>
-                                    <th>Tanggal Selesai Audit</th>
+                                    <th>Tanggal Audit</th>
+                                    <th>Nama Unit</th>
+                                    <th>Nama Tim</th>
                                     <th>Ketua SPI</th>
                                     <th>File SK</th>
                                     <th>Aksi</th>
@@ -35,6 +36,7 @@
                             <tbody>
                                 @foreach ($periode as $p)
                                     <tr>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $p->nama }}</td>
                                         <td>{{ $p->tanggal_mulai }}</td>
@@ -52,32 +54,6 @@
                                                         d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6">
                                                     </path>
                                                 </svg></a>
-                                            <a href="{{ route('setup-audit.edit', $p->id) }}"
-                                                class="badge bg-warning"><svg xmlns="http://www.w3.org/2000/svg"
-                                                    class="icon icon-tabler icon-tabler-edit" width="20" height="20"
-                                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                    <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1">
-                                                    </path>
-                                                    <path
-                                                        d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z">
-                                                    </path>
-                                                    <path d="M16 5l3 3"></path>
-                                                </svg></a>
-                                            <button class="badge bg-danger border-0" data-id="{{ $p->id }}" onclick="" data-bs-toggle="modal"
-                                                data-bs-target="#confirmDelete"><svg xmlns="http://www.w3.org/2000/svg"
-                                                    class="icon icon-tabler icon-tabler-trash-x" width="20"
-                                                    height="20" viewBox="0 0 24 24" stroke-width="2"
-                                                    stroke="currentColor" fill="none" stroke-linecap="round"
-                                                    stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                    <path d="M4 7h16"></path>
-                                                    <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
-                                                    <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
-                                                    <path d="M10 12l4 4m0 -4l-4 4"></path>
-                                                </svg>
-                                            </button>
                                         </td>
                                     </tr>
                                 @endforeach

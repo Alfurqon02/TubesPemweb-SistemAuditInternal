@@ -29,9 +29,19 @@ class DetailAuditController extends Controller
         ->select('unit.nama as nama_unit',
                 'unit_audit.tanggal_audit as tanggal_audit',
                 'tim_auditor.nama_ketua_tim as nama_ketua_tim',
-                'tim_auditor.nip_ketua_tim as nip_ketua_tim')
+                'tim_auditor.nip_ketua_tim as nip_ketua_tim',
+                'tim_auditor.nama as nama_tim',
+                'unit_audit.id as id' )
         ->get();
+        $periode = PeriodeAudit::all()->where('id', '=', $setup_audit->id);
+                // DB::table('periode_audit')
+                // ->where('id', '=', $setup_audit->id)
+                // ->select('nama')
+                // ->get();
+        // 'select nama from periode_audit where id = ' . $setup_audit->id;
+        // return $json;
         return view('detaill-audit.index', [
+            'periode' => $periode,
             'audit' => $audit,
             'id' => $setup_audit->id,
         ]);
@@ -91,15 +101,33 @@ class DetailAuditController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(PeriodeAudit $periodeAudit)
+    public function edit(PeriodeAudit $setup_audit, UnitAudit $detail)
     {
-        //
+        $audit = DB::table('unit_audit')
+        ->join('periode_audit', 'periode_audit.id', '=', 'unit_audit.id_periode_audit')
+        ->join('unit', 'unit_audit.id_unit', '=', 'unit.id')
+        ->join('tim_auditor', 'unit_audit.id_tim_auditor','=','tim_auditor.id')
+        ->where('periode_audit.id', '=', $setup_audit->id)
+        ->where('unit_audit.id', '=', $detail->id)
+        ->select('unit.nama as nama_unit',
+                'unit_audit.tanggal_audit as tanggal_audit',
+                'tim_auditor.nama_ketua_tim as nama_ketua_tim',
+                'tim_auditor.nip_ketua_tim as nip_ketua_tim',
+                'tim_auditor.nama as nama_tim',
+                'unit_audit.id as id' )
+        ->first();
+        // $unitAudit = UnitAudit::with('')->where('id', '=', $setup_audit->id);
+        return view('detaill-audit.edit', [
+            'a' => $audit,
+            'detail_id' => $detail->id,
+            'setup_id' => $setup_audit->id,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, PeriodeAudit $periodeAudit)
+    public function update(Request $request, PeriodeAudit $periodeAudit, UnitAudit $detail)
     {
         //
     }
@@ -109,8 +137,8 @@ class DetailAuditController extends Controller
      */
     public function destroy(PeriodeAudit $setup_audit, UnitAudit $detail)
     {
-        return $detail;
-        $detail->delete();
-        return redirect(route('setup-audit.index'))->with('success', 'Audit Telah dihapus!');
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        UnitAudit::where('id', $detail->id)->delete();
+        return redirect(route('detaill.index'))->with('success', 'Audit Telah dihapus!');
     }
 }

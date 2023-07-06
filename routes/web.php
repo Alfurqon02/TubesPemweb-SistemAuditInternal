@@ -12,6 +12,7 @@ use App\Http\Controllers\UnitAuditController;
 use App\Http\Controllers\SetupAuditController;
 use App\Http\Controllers\TimAuditorController;
 use App\Http\Controllers\DetailAuditController;
+use App\Http\Controllers\DetailAuditorController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -54,7 +55,11 @@ Route::middleware(['auth'])->group(function () {
 
     // Setup Unit
     Route::resource('/setup-audit/{setup_audit}/detail', DetailAuditController::class);
+    // Route::delete('/setup-audit/{setup_audit}/detail/{detail}', [DetailAuditController::class, 'destroy']);
     // Route::get('/setup-audit/{setup_audit}/detail', [DetailAuditController::class, 'search']);
+
+    //Input Auditor
+    Route::resource('/input-auditor', DetailAuditorController::class);
 });
 
 // Auth::routes();

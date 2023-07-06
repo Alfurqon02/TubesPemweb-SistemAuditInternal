@@ -101,7 +101,6 @@
             </div>
         </div>
     </div>
-
         {{-- confirm delete modal --}}
         <div class="modal fade" id="confirmDelete" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -122,7 +121,6 @@
                 </div>
             </div>
         </div>
-
 <script>
     $('#confirmDelete').on('show.bs.modal', function (e) {
         var id_periode = $(e.relatedTarget).data('id');

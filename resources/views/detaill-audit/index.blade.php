@@ -8,14 +8,16 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
-
         <div class="row">
             <div class="col d-flex align-items-strech">
                 <div class="card w-100">
                     <div class="card-body">
                         <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
                             <div class="mb-3 mb-sm-0">
-                                <h5 class="card-title fw-semibold">Tambah Unit Audit</h5>
+                                @foreach ($periode as $p)
+                                    <h5 class="card-title fw-semibold">{{ $p->nama }}</h5>
+                                @endforeach
+
                             </div>
                         </div>
                         {{-- Add Content Here! --}}
@@ -36,6 +38,7 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>Nama Tim</th>
                                     <th>Unit</th>
                                     <th>Tanggal Audit</th>
                                     <th>Ketua Tim Auditor</th>
@@ -45,71 +48,58 @@
                             </thead>
                             <tbody>
                                 @foreach ($audit as $a)
-                                                <tr>
-                                                    <td>{{ $loop->iteration }}</td>
-                                                    <td>
-                                                        {{ $a->nama_unit }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $a->tanggal_audit }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $a->nama_ketua_tim }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $a->nip_ketua_tim }}
-                                                    </td>
-                                                    <td>
-                                                        <a href="" class="badge bg-info"><svg
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                class="icon icon-tabler icon-tabler-eye" width="20"
-                                                                height="20" viewBox="0 0 24 24" stroke-width="2"
-                                                                stroke="currentColor" fill="none" stroke-linecap="round"
-                                                                stroke-linejoin="round">
-                                                                <path stroke="none" d="M0 0h24v24H0z" fill="none">
-                                                                </path>
-                                                                <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
-                                                                <path
-                                                                    d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6">
-                                                                </path>
-                                                            </svg></a>
-                                                        {{-- edit --}}
-                                                        <a href="" class="badge bg-warning"><svg
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                class="icon icon-tabler icon-tabler-edit" width="20"
-                                                                height="20" viewBox="0 0 24 24" stroke-width="2"
-                                                                stroke="currentColor" fill="none" stroke-linecap="round"
-                                                                stroke-linejoin="round">
-                                                                <path stroke="none" d="M0 0h24v24H0z" fill="none">
-                                                                </path>
-                                                                <path
-                                                                    d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1">
-                                                                </path>
-                                                                <path
-                                                                    d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z">
-                                                                </path>
-                                                                <path d="M16 5l3 3"></path>
-                                                            </svg></a>
-                                                        {{-- delete --}}
-                                                        <button class="badge bg-danger border-0" data-id=""
-                                                            onclick="" data-bs-toggle="modal"
-                                                            data-bs-target="#confirmDelete"><svg
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                class="icon icon-tabler icon-tabler-trash-x" width="20"
-                                                                height="20" viewBox="0 0 24 24" stroke-width="2"
-                                                                stroke="currentColor" fill="none" stroke-linecap="round"
-                                                                stroke-linejoin="round">
-                                                                <path stroke="none" d="M0 0h24v24H0z" fill="none">
-                                                                </path>
-                                                                <path d="M4 7h16"></path>
-                                                                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12">
-                                                                </path>
-                                                                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
-                                                                <path d="M10 12l4 4m0 -4l-4 4"></path>
-                                                            </svg>
-                                                        </button>
-                                                    </td>
-                                                </tr>
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>
+                                            {{ $a->nama_tim }}
+                                        </td>
+                                        <td>
+                                            {{ $a->nama_unit }}
+                                        </td>
+                                        <td>
+                                            {{ $a->tanggal_audit }}
+                                        </td>
+                                        <td>
+                                            {{ $a->nama_ketua_tim }}
+                                        </td>
+                                        <td>
+                                            {{ $a->nip_ketua_tim }}
+                                        </td>
+                                        <td>
+                                            {{-- edit --}}
+                                            <a href="{{ route('detail.edit', ['setup_audit' => $id, 'detail' => $a->id]) }}" class="badge bg-warning"><svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    class="icon icon-tabler icon-tabler-edit" width="20" height="20"
+                                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none">
+                                                    </path>
+                                                    <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1">
+                                                    </path>
+                                                    <path
+                                                        d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z">
+                                                    </path>
+                                                    <path d="M16 5l3 3"></path>
+                                                </svg></a>
+                                            {{-- delete --}}
+                                            <button class="badge bg-danger border-0" data-id="{{ $a->id }}" data-periode="{{ $id }}" onclick=""
+                                                data-bs-toggle="modal" data-bs-target="#confirmDelete"><svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    class="icon icon-tabler icon-tabler-trash-x" width="20"
+                                                    height="20" viewBox="0 0 24 24" stroke-width="2"
+                                                    stroke="currentColor" fill="none" stroke-linecap="round"
+                                                    stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none">
+                                                    </path>
+                                                    <path d="M4 7h16"></path>
+                                                    <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12">
+                                                    </path>
+                                                    <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+                                                    <path d="M10 12l4 4m0 -4l-4 4"></path>
+                                                </svg>
+                                            </button>
+                                        </td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
@@ -118,14 +108,13 @@
             </div>
         </div>
     </div>
-
     {{-- confirm delete modal --}}
     <div class="modal fade" id="confirmDelete" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <form action="" method="POST" class="d-inline" id="form-delete">
+                <form action="/" method="POST" class="d-inline" id="form-delete">
                     @csrf
-                    @method('delete')
+                    @method('DELETE')
                     <div class="modal-body"
                         style="height: 100px; display: flex; align-items: center; justify-content: center;">
                         <h5 class="text-center">Apakah Anda yakin ingin menghapus?</h5>
@@ -138,12 +127,13 @@
             </div>
         </div>
     </div>
-
     <script>
-        $('#confirmDelete').on('show.bs.modal', function(e) {
-            var id_unit_audit = $(e.relatedTarget).data('id');
-            console.log(id_unit_audit);
-            $(e.currentTarget).find('#form-delete').attr('action', 'detail.destroy' + id_unit_audit);
-        })
+        $('#confirmDelete').on('show.bs.modal', function (e) {
+            var unit = $(e.relatedTarget).data('id');
+            var periode = $(e.relatedTarget).data('periode');
+            console.log(unit);
+            console.log(periode);
+            $(e.currentTarget).find('#form-delete').attr('action', '/setup-audit/' + periode + '/detail/' + unit);
+        });
     </script>
 @endsection
