@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tim_auditor', function (Blueprint $table) {
+        Schema::create('user_tim', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->string('nama_ketua_tim');
-            $table->string('nip_ketua_tim')->unique();
-            // $table->unsignedBigInteger('id_unit_audit');
+            $table->string('nip');
+            $table->unsignedBigInteger('id_user');
+            $table->unsignedBigInteger('id_tim');
             $table->timestamps();
 
-            // $table->foreign('id_unit_audit')->references('id')->on('unit_audit');
+            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('id_tim')->references('id')->on('tim_auditor');
         });
     }
 
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tim_auditors');
+        Schema::dropIfExists('user_tim');
     }
 };

@@ -13,7 +13,22 @@ class DetailAuditorController extends Controller
      */
     public function index()
     {
-        return view ('input-auditor.index');
+        $audit = DB::table('unit_audit')
+        ->join('periode_audit', 'periode_audit.id', '=', 'unit_audit.id_periode_audit')
+        ->join('unit', 'unit_audit.id_unit', '=', 'unit.id')
+        ->join('tim_auditor', 'unit_audit.id_tim_auditor','=','tim_auditor.id')
+        ->select('unit.nama as nama_unit',
+                'unit_audit.tanggal_audit as tanggal_audit',
+                'periode_audit.nama_ketua_spi as nama_ketua_spi',
+                'periode_audit.nip_ketua_spi as nip_ketua_spi',
+                'unit_audit.id as id',
+                'periode_audit.nama as nama_periode')
+        ->get();
+        $periode = PeriodeAudit::all();
+        return view ('input-auditor.index', [
+            'audit' => $audit,
+            'periode' => $periode,
+        ]);
     }
 
     /**

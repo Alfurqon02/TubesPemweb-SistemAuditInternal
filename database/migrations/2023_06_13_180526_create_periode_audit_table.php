@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('file_sk')->nullable();
             $table->date('tanggal_sk');
             $table->string('nama_ketua_spi');
-            $table->string('nip_ketua_spi');
+            $table->string('nip_ketua_spi')->unique();
             $table->timestamps();
         });
     }

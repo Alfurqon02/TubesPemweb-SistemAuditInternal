@@ -16,11 +16,6 @@ class DetailAuditController extends Controller
      */
     public function index(PeriodeAudit $setup_audit)
     {
-        // dd($setup_audit->id);
-        // ->where('id', '=', $setup_audit)
-        // return PeriodeAudit::with('unit')->get();
-        // $audit = PeriodeAudit::where('id', '=', $setup_audit->id)->with('unit', 'timAuditor')->get();
-
         $audit = DB::table('unit_audit')
         ->join('periode_audit', 'periode_audit.id', '=', 'unit_audit.id_periode_audit')
         ->join('unit', 'unit_audit.id_unit', '=', 'unit.id')
@@ -34,12 +29,6 @@ class DetailAuditController extends Controller
                 'unit_audit.id as id' )
         ->get();
         $periode = PeriodeAudit::all()->where('id', '=', $setup_audit->id);
-                // DB::table('periode_audit')
-                // ->where('id', '=', $setup_audit->id)
-                // ->select('nama')
-                // ->get();
-        // 'select nama from periode_audit where id = ' . $setup_audit->id;
-        // return $json;
         return view('detaill-audit.index', [
             'periode' => $periode,
             'audit' => $audit,
@@ -64,11 +53,11 @@ class DetailAuditController extends Controller
     {
         // dd($setup_audit);
         $validatedData = $request->validate([
-            'nama' => 'required',
-            'nama_ketua_tim' => 'required',
-            'nip_ketua_tim' => 'required',
+            'nama' => 'required|string',
+            'nama_ketua_tim' => 'required|string',
+            'nip_ketua_tim' => 'required|string',
             'nama_unit' => 'required',
-            'tanggal_audit' => 'required',
+            'tanggal_audit' => 'required|date',
         ]);
 
         $timAuditor = TimAuditor::create($validatedData);
@@ -138,7 +127,7 @@ class DetailAuditController extends Controller
     public function destroy(PeriodeAudit $setup_audit, UnitAudit $detail)
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        UnitAudit::where('id', $detail->id)->delete();
-        return redirect(route('detaill.index'))->with('success', 'Audit Telah dihapus!');
+        UnitAudit::where('id','=', $detail->id)->delete();
+        return redirect(route('detail.index', ['setup_audit' => $setup_audit->id, 'detail' => $detail->id]))->with('success', 'Audit Telah dihapus!');
     }
 }
