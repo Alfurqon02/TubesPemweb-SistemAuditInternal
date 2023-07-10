@@ -60,6 +60,15 @@ Route::middleware(['auth'])->group(function () {
 
     //Input Auditor
     Route::resource('/input-auditor', DetailAuditorController::class);
+
+        Route::get('/auditor', function () {
+        return view('auditor.index');
+    })->name('auditor.index');
+
+        Route::get('/auditee', function () {
+        return view('auditee.index');
+    })->name('auditee.index');
+
 });
 
 // Auth::routes();

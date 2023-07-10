@@ -16,7 +16,7 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         $validatedData = $request->validate([
-            'fullname' => 'required|string|max:255',
+            // 'fullname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'nip' => 'required|string|unique:users,nip',
             'username' => 'required|string|max:255|unique:users',
@@ -24,7 +24,7 @@ class RegisterController extends Controller
         ]);
 
         $user = User::create([
-            'fullname' => $validatedData['fullname'],
+            // 'fullname' => $validatedData['fullname'],
             'email' => $validatedData['email'],
             'nip' => $validatedData['nip'],
             'username' => $validatedData['username'],
@@ -33,6 +33,6 @@ class RegisterController extends Controller
 
         // You can add additional actions here, such as sending a verification email
 
-        return redirect()->route('registered')->with('success', 'Registration successful');
+        return redirect()->route('login')->with('success', 'Registration successful');
     }
 }
