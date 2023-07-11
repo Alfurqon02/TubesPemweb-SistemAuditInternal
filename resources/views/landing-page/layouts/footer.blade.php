@@ -6,7 +6,7 @@
     <div class="row">
 
       <div class="col-lg-9 col-md-6 footer-contact">
-        <h3>Universitas Sebelas Maret</h3>
+        <h3>SiAuditIn</h3>
         <p>
           Jalan Ir. Sutami 36 Kentingan, Jebres, <br>
           Surakarta, Jawa Tengah. Indonesia<br>

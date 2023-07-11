@@ -10,7 +10,7 @@
       <div class="row">
         <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
           <h1>AUDIT SYSTEM</h1>
-          <h2>Universitas Sebelas Maret</h2>
+          {{-- <h2>Universitas Sebelas Maret</h2> --}}
           <div class="d-flex justify-content-center justify-content-lg-start">
             <a href="/login" class="btn-login scrollto">LOGIN</a>
             <!-- <a href="#" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
