@@ -2,19 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Laratrust\Contracts\LaratrustUser;
-use Laravel\Sanctum\HasApiTokens;
 use Laratrust\Traits\HasRolesAndPermissions;
 
 class User extends Authenticatable implements LaratrustUser
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRolesAndPermissions;
+    use HasRolesAndPermissions;
 
     protected $fillable = [
-        'id_role',
         'email',
         'username',
         'password',
@@ -28,11 +26,10 @@ class User extends Authenticatable implements LaratrustUser
 
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
     ];
 
-    public function role()
+    public function roles(): MorphToMany
     {
-        return $this->belongsTo(Role::class, 'id_role');
+        return $this->morphToMany(Role::class, 'user', 'role_user');
     }
 }

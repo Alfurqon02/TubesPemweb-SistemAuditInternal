@@ -1,15 +1,14 @@
 <?php
 
-
 namespace Database\Seeders;
 
-use Illuminate\Support\Str;
-use Illuminate\Support\Carbon;
 use Illuminate\Database\Seeder;
-use App\Models\User as UserSeeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
+use App\Models\User as UserModel;
+use App\Models\Role;
 
 class User extends Seeder
 {
@@ -21,17 +20,47 @@ class User extends Seeder
     public function run()
     {
         $nama = ['Rama', 'Azzam', 'Furqon', 'Hilda'];
-        for($i = 0; $i < sizeof($nama); $i++){
+        foreach ($nama as $namaUser) {
             DB::table('users')->insert([
-                'email' => strtolower($nama[$i] . '@staff.uns.ac.id'),
-                'username' => $nama[$i],
+                'email' => strtolower($namaUser . '@staff.uns.ac.id'),
+                'username' => $namaUser,
                 'nip' => Str::upper(Str::random(16)),
-                'password' => Hash::make(strtolower($nama[$i]. '_123')),
+                'password' => Hash::make(strtolower($namaUser . '_123')),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]);
         }
 
-        UserSeeder::factory()->count(25)->create();
+        // Buat akun Administrator
+        UserModel::create([
+            'email' => 'admin@example.com',
+            'username' => 'admin',
+            'nip' => Str::upper(Str::random(16)),
+            'password' => Hash::make('password'),
+        ])->roles()->attach(Role::where('name', 'administrator')->first());
+
+        // Buat akun Ketua Auditor
+        UserModel::create([
+            'email' => 'ketua_auditor@example.com',
+            'username' => 'ketua_auditor',
+            'nip' => Str::upper(Str::random(16)),
+            'password' => Hash::make('password'),
+        ])->roles()->attach(Role::where('name', 'ketua_auditor')->first());
+
+        // Buat akun Auditor
+        UserModel::create([
+            'email' => 'auditor@example.com',
+            'username' => 'auditor',
+            'nip' => Str::upper(Str::random(16)),
+            'password' => Hash::make('password'),
+        ])->roles()->attach(Role::where('name', 'auditor')->first());
+
+        // Buat akun Auditee
+        UserModel::create([
+            'email' => 'auditee@example.com',
+            'username' => 'auditee',
+            'nip' => Str::upper(Str::random(16)),
+            'password' => Hash::make('password'),
+        ])->roles()->attach(Role::where('name', 'auditee')->first());
     }
 }
