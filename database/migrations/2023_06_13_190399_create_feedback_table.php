@@ -18,6 +18,8 @@ return new class extends Migration
             $table->date('tanggal_kesanggupan');
             $table->text('rencana_tindak_lanjut');
             $table->timestamps();
+
+            $table->foreign('id_temuan')->references('id')->on('temuan');
         });
     }
 

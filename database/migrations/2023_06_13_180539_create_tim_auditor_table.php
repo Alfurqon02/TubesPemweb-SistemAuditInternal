@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('nama');
             $table->string('nama_ketua_tim');
             $table->string('nip_ketua_tim');
-            $table->unsignedBigInteger('id_unit_audit');
+            // $table->unsignedBigInteger('id_unit_audit');
             $table->timestamps();
 
-            $table->foreign('id_unit_audit')->references('id')->on('unit_audit');
+            // $table->foreign('id_unit_audit')->references('id')->on('unit_audit');
         });
     }
 

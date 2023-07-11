@@ -1,10 +1,19 @@
 <?php
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\PeriodeAuditController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\LogoutController;
-use App\Http\Controllers\UnitAuditController;
+use App\Models\TimAuditorCon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\APIController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\UnitAuditController;
+use App\Http\Controllers\SetupAuditController;
+use App\Http\Controllers\TimAuditorController;
+use App\Http\Controllers\DetailAuditController;
+use App\Http\Controllers\DetailAuditorController;
 
 Route::get('/', function () {
     return view('landing-page.index');
@@ -25,27 +34,43 @@ Route::middleware(['auth'])->group(function () {
 
      // Account
     Route::get('/account', [AccountController::class, 'showAccount'])->name('account');
-    
-     // Profile
+
+    //  Profile
     Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile');
 
     // Profile
     Route::get('/task', [ProfileController::class, 'showTask'])->name('task');
-    
+
+    //API
+    Route::prefix('/api')->group(function(){
+    Route::get('/users', [APIController::class, 'ApiUser']);
+    Route::get('/audit', [APIController::class, 'ApiAudit']);
+    });
+
     // Dashboard
     Route::get('/dashboard', function () {
         return view('dashboard.index');
     })->name('dashboard');
 
     // Setup Audit
-    Route::get('/setup-audit', function () {
-        return view('setup.index');
-    })->name('setup-audit');
+    Route::resource('/setup-audit', SetupAuditController::class);
 
-    // Setup Periode
-    Route::resource('/setup-audit/setup-periode', PeriodeAuditController::class);
-    Route::get('/setup-audit/setup-periode/{setup_periode}/download', [PeriodeAuditController::class, 'download'])->name('setup-periode-download');
+    //Input Auditor
+    Route::resource('/input-auditor/{input_auditor}/input', DetailAuditorController::class);
+
+    // Setup Setup
+    // Route::resource('/setup-audit/setup-Setup', SetupAuditController::class);
+    Route::get('/setup-audit/{setup_audit}/download', [SetupAuditController::class, 'download'])->name('setup-audit.download');
 
     // Setup Unit
-    Route::resource('/setup-audit/setup-unit', UnitAuditController::class);
+    Route::resource('/setup-audit/{setup_audit}/detail', DetailAuditController::class);
+    // Route::delete('/setup-audit/{setup_audit}/detail/{detail}', [DetailAuditController::class, 'destroy']);
+    // Route::get('/setup-audit/{setup_audit}/detail', [DetailAuditController::class, 'search']);
+
+    //Input Auditor
+    Route::resource('/input-auditor', TimAuditorController::class);
 });
+
+// Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

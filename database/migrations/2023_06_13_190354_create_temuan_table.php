@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('rekomendasi_follow_up');
             $table->timestamps();
 
-            $table->foreign('id_unit_audit')->references('id')->on('temuan');
+            $table->foreign('id_unit_audit')->references('id')->on('unit_audit');
         });
     }
 

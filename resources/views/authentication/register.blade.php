@@ -49,8 +49,13 @@
                                             aria-describedby="emailHelp" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="fullname" class="form-label">Full Name</label>
-                                        <input type="text" class="form-control" id="fullname" name="fullname"
+                                        <label for="display_name" class="form-label">Nama</label>
+                                        <input type="text" class="form-control" id="display_name" name="display_name"
+                                            required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="nip" class="form-label">NIP</label>
+                                        <input type="text" class="form-control" id="nip" name="nip"
                                             aria-describedby="textHelp" required>
                                     </div>
                                     <div class="mb-3">

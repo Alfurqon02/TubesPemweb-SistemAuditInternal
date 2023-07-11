@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Unit;
+use App\Models\TimAuditor;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class PeriodeAudit extends Model
 {
@@ -13,7 +15,11 @@ class PeriodeAudit extends Model
 
     protected $guarded = ['id'];
 
-    public function unitAudit(){
-        return $this->hasMany(UnitAudit::class, 'id_periode_audit', 'id');
+    public function unit(){
+        return $this->belongsToMany(Unit::class, 'unit_audit', 'id_periode_audit', 'id_unit');
+    }
+
+    public function timAuditor(){
+        return $this->belongsToMany(TimAuditor::class, 'unit_audit', 'id_periode_audit', 'id_tim_auditor');
     }
 }
