@@ -6,6 +6,7 @@ use App\Models\PeriodeAudit;
 use App\Models\TimAuditor;
 use App\Models\UnitAudit;
 use App\Models\Unit;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -16,6 +17,7 @@ class DetailAuditController extends Controller
      */
     public function index(PeriodeAudit $setup_audit)
     {
+
         $audit = DB::table('unit_audit')
         ->join('periode_audit', 'periode_audit.id', '=', 'unit_audit.id_periode_audit')
         ->join('unit', 'unit_audit.id_unit', '=', 'unit.id')
@@ -67,6 +69,7 @@ class DetailAuditController extends Controller
         $idTim = $timAuditor->id;
         $idPeriode = $setup_audit->id;
         $saveUnit = DB::select('select id from unit where nama = ?', [$nama_unit]);
+        $idUser = DB::select('select id from users where nip = ?', [$timAuditor->nip_ketua_tim]);
 
         if (!empty($saveUnit)) {
             $idUnit = $saveUnit[0]->id;
@@ -75,6 +78,8 @@ class DetailAuditController extends Controller
         } else {
             // Handle the case when the "unit" with the given name does not exist.
         }
+
+        DB::insert('insert into user_tim (id_user, id_tim) values (?, ?)', [$idUser[0]->id, $idTim]);
 
         return redirect(route('detail.index', $setup_audit->id))->with('success', 'Unit Audit Telah ditambahkan!');
     }

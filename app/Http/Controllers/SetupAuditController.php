@@ -13,6 +13,7 @@ class SetupAuditController extends Controller
      */
     public function index()
     {
+        
         return view('setup-audit.index', [
             'periode' => PeriodeAudit::all()
         ]);

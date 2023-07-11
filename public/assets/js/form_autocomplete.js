@@ -25,8 +25,8 @@ const AutocompleteInputs = function() {
         }
 
         // Demo data
-        const autocompleteData = [
-            'Fakultas Ilmu Teknologi dan Sains Data',
+        let autocompleteUnitData = [
+        'Fakultas Ilmu Teknologi dan Sains Data',
         'Informatika',
         'Sains Data',
         'Fakultas Ilmu Pengetahuan Alam',
@@ -110,12 +110,39 @@ const AutocompleteInputs = function() {
         'Pendidikan TIK',
         'Pendidikan Teknik Mesin',
         ];
+        console.log(autocompleteUnitData)
+
+        let autoCompleteUserNip = [
+        ];
+        fetch('http://127.0.0.1:8000/api/users')
+            .then((response)=>response.json())
+            .then((response)=>{
+                autoCompleteUserNip = response.map((user) => user.nip)
+                console.log(autoCompleteUserNip)
+                const autocompleteUserNip = new autoComplete({
+                    selector: "#autocomplete_user_nip",
+                    data: {
+                        src: autoCompleteUserNip
+                    },
+                    resultItem: {
+                        highlight: true
+                    },
+                    events: {
+                        input: {
+                            selection: function(event){
+                                const selection = event.detail.selection.value;
+                                autocompleteUserNip.input.value = selection;
+                            }
+                        }
+                    }
+                });
+            })
 
         // Basic
-        const autocompleteBasic = new autoComplete({
-            selector: "#autocomplete_basic",
+        const autocompleteUnit = new autoComplete({
+            selector: "#autocomplete_unit",
             data: {
-                src: autocompleteData
+                src: autocompleteUnitData
             },
             resultItem: {
                 highlight: true
@@ -124,11 +151,13 @@ const AutocompleteInputs = function() {
                 input: {
                     selection: function(event){
                         const selection = event.detail.selection.value;
-                        autocompleteBasic.input.value = selection;
+                        autocompleteUnit.input.value = selection;
                     }
                 }
             }
         });
+
+
 
         // Disable selection
         const autocompleteSelection = new autoComplete({

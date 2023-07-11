@@ -3,38 +3,41 @@
 namespace App\Http\Controllers;
 
 use App\Models\PeriodeAudit;
+use App\Models\TimAuditor;
+use App\Models\UnitAudit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class DetailAuditorController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(TimAuditor $input_auditor)
     {
-        $audit = DB::table('unit_audit')
-        ->join('periode_audit', 'periode_audit.id', '=', 'unit_audit.id_periode_audit')
-        ->join('unit', 'unit_audit.id_unit', '=', 'unit.id')
-        ->join('tim_auditor', 'unit_audit.id_tim_auditor','=','tim_auditor.id')
-        ->select('unit.nama as nama_unit',
-                'unit_audit.tanggal_audit as tanggal_audit',
-                'periode_audit.nama_ketua_spi as nama_ketua_spi',
-                'periode_audit.nip_ketua_spi as nip_ketua_spi',
-                'unit_audit.id as id',
-                'periode_audit.nama as nama_periode')
+        $auditor = DB::table('users')
+        ->join('user_tim', 'users.id', '=', 'user_tim.id_user')
+        ->join('tim_auditor', 'user_tim.id_tim', '=', 'tim_auditor.id')
+        ->join('unit_audit', 'tim_auditor.id', '=', 'unit_audit.id_tim_auditor')
+        ->where('unit_audit.id', '=', $input_auditor->id)
+        ->select('users.display_name as nama_auditor',
+                'users.nip as nip_auditor',
+                'users.email as email_auditor',
+                'user_tim.id as id')
         ->get();
-        $periode = PeriodeAudit::all();
-        return view ('input-auditor.index', [
-            'audit' => $audit,
-            'periode' => $periode,
+        // return $auditor;
+        // return $input_auditor->id;
+        return view ('input-auditor.show',[
+            'auditor' => $auditor,
+            'id'=> $input_auditor->id,
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(TimAuditor $input_auditor)
     {
         //
     }
@@ -42,28 +45,25 @@ class DetailAuditorController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TimAuditor $input_auditor, Request $request)
     {
-        //
+
+        $validatedData = $request->validate([
+            'nama' => 'required|string',
+            'nip_auditor' => 'required|string',
+        ]);
+        $idUser = DB::table('users')->where('nip', '=', [$request->nip_auditor])->select('id')->get();
+        $auditor = DB::insert('insert into user_tim (id_user, id_tim) values (?, ?)', [$idUser[0]->id, $input_auditor->id]);
+
+        return redirect(route('input.index', $input_auditor))->with('success', 'Auditor Telah Ditambahkan!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(PeriodeAudit $setup_audit)
+    public function show(TimAuditor $input_auditor, TimAuditor $input)
     {
-        $audit = DB::table('unit_audit')
-        ->join('periode_audit', 'periode_audit.id', '=', 'unit_audit.id_periode_audit')
-        ->join('unit', 'unit_audit.id_unit', '=', 'unit.id')
-        ->join('tim_auditor', 'unit_audit.id_tim_auditor','=','tim_auditor.id')
-        ->where('periode_audit.id', '=', $setup_audit->id)
-        ->select('unit.nama as nama_unit',
-                'unit_audit.tanggal_audit as tanggal_audit',
-                'tim_auditor.nama_ketua_tim as nama_ketua_tim',
-                'tim_auditor.nip_ketua_tim as nip_ketua_tim',
-                'tim_auditor.nama as nama_tim',
-                'unit_audit.id as id' )
-        ->get();
+
     }
 
     /**
@@ -85,8 +85,10 @@ class DetailAuditorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(TimAuditor $input_auditor, $input)
     {
-        //
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::delete('delete from user_tim where id = ?', [$input]);
+        return redirect(route('input.index', ['input_auditor' => $input_auditor->id]))->with('success', 'Auditor Telah dihapus!');
     }
 }

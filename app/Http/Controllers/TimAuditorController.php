@@ -6,6 +6,9 @@ use App\Models\TimAuditor;
 use App\Models\PeriodeAudit;
 use App\Http\Requests\StoreTimAuditorRequest;
 use App\Http\Requests\UpdateTimAuditorRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class TimAuditorController extends Controller
 {
@@ -14,8 +17,23 @@ class TimAuditorController extends Controller
      */
     public function index()
     {
-        return view('input-auditor.index', [
-            'periode' => PeriodeAudit::all()
+        $nip = Auth::user()->nip;
+        $audit = DB::table('unit_audit')
+        ->join('periode_audit', 'periode_audit.id', '=', 'unit_audit.id_periode_audit')
+        ->join('unit', 'unit_audit.id_unit', '=', 'unit.id')
+        ->join('tim_auditor', 'unit_audit.id_tim_auditor','=','tim_auditor.id')
+        ->where('tim_auditor.nip_ketua_tim', '=', $nip)
+        ->select('unit.nama as nama_unit',
+                'unit_audit.tanggal_audit as tanggal_audit',
+                'periode_audit.nama_ketua_spi as nama_ketua_spi',
+                'periode_audit.nip_ketua_spi as nip_ketua_spi',
+                'unit_audit.id as id',
+                'periode_audit.nama as nama_periode')
+        ->get();
+        $periode = PeriodeAudit::all();
+        return view ('input-auditor.index', [
+            'audit' => $audit,
+            'periode' => $periode,
         ]);
     }
 
@@ -30,9 +48,18 @@ class TimAuditorController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTimAuditorRequest $request)
+    public function store(Request $request, TimAuditor $input_auditor)
     {
-        //
+        // $validatedData = $request->validate([
+        //     'nama' => 'required|string',
+        //     'nip' => 'required|string',
+        // ]);
+
+        // $idUser = DB::table('users')->where('nip', '=', $request->nip);
+
+        // return $idUser;
+
+        // $auditor = DB::insert('insert into user_tim (id_user, id_tim) values (?, ?)', []);
     }
 
     /**

@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\APIController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UnitAuditController;
@@ -40,6 +41,12 @@ Route::middleware(['auth'])->group(function () {
     // Profile
     Route::get('/task', [ProfileController::class, 'showTask'])->name('task');
 
+    //API
+    Route::prefix('/api')->group(function(){
+    Route::get('/users', [APIController::class, 'ApiUser']);
+    Route::get('/audit', [APIController::class, 'ApiAudit']);
+    });
+
     // Dashboard
     Route::get('/dashboard', function () {
         return view('dashboard.index');
@@ -47,7 +54,9 @@ Route::middleware(['auth'])->group(function () {
 
     // Setup Audit
     Route::resource('/setup-audit', SetupAuditController::class);
-    Route::resource('/input-auditor', TimAuditorController::class);
+
+    //Input Auditor
+    Route::resource('/input-auditor/{input_auditor}/input', DetailAuditorController::class);
 
     // Setup Setup
     // Route::resource('/setup-audit/setup-Setup', SetupAuditController::class);
@@ -59,7 +68,7 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('/setup-audit/{setup_audit}/detail', [DetailAuditController::class, 'search']);
 
     //Input Auditor
-    Route::resource('/input-auditor', DetailAuditorController::class);
+    Route::resource('/input-auditor', TimAuditorController::class);
 });
 
 // Auth::routes();

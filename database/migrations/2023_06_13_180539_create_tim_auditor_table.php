@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->string('nama_ketua_tim');
-            $table->string('nip_ketua_tim')->unique();
+            $table->string('nip_ketua_tim');
             // $table->unsignedBigInteger('id_unit_audit');
             $table->timestamps();
 
