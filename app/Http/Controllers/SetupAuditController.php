@@ -17,7 +17,10 @@ class SetupAuditController extends Controller
         return view('setup-audit.index', [
             'periode' => PeriodeAudit::all()
         ]);
+        
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -125,4 +128,5 @@ class SetupAuditController extends Controller
         $headers = "SK " . $setup_audit->nama_audit . ".pdf";
         return Storage::download($setup_audit->file_sk, $headers);
     }
+    
 }

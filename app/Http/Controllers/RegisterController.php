@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -16,7 +17,6 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         $validatedData = $request->validate([
-            'fullname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'nip' => 'required|string|unique:users,nip',
             'display_name' => 'required|string',
@@ -25,15 +25,16 @@ class RegisterController extends Controller
         ]);
 
         $user = User::create([
-            'fullname' => $validatedData['fullname'],
             'email' => $validatedData['email'],
             'nip' => $validatedData['nip'],
             'username' => $validatedData['username'],
             'password' => Hash::make($validatedData['password']),
         ]);
 
-        // You can add additional actions here, such as sending a verification email
+        // Assign the "guests" role to the newly registered user
+        $guestRole = Role::where('name', 'guests')->first();
+        $user->roles()->attach($guestRole);
 
-        return redirect()->route('registered')->with('success', 'Registration successful');
+        return redirect()->route('login')->with('success', 'Registration successful');
     }
 }

@@ -115,7 +115,6 @@ return [
     'models' => [
 
         'role' => \App\Models\Role::class,
-
         'permission' => \App\Models\Permission::class,
 
         /**
@@ -135,7 +134,6 @@ return [
     'tables' => [
 
         'roles' => 'roles',
-
         'permissions' => 'permissions',
 
         /**
@@ -162,22 +160,22 @@ return [
         /**
          * User foreign key on Laratrust's role_user and permission_user tables.
          */
-        'user' => 'user_id',
+            'user' => 'user_id',
 
         /**
          * Role foreign key on Laratrust's role_user and permission_role tables.
          */
-        'role' => 'role_id',
+          'role' => 'role_id',
 
         /**
          * Role foreign key on Laratrust's permission_user and permission_role tables.
          */
-        'permission' => 'permission_id',
+              'permission' => 'permission_id',
 
         /**
          * Role foreign key on Laratrust's role_user and permission_user tables.
          */
-        'team' => 'team_id',
+           'team' => 'team_id',
     ],
 
     /*
