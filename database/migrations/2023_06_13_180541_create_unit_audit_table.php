@@ -17,11 +17,13 @@ return new class extends Migration
             $table->unsignedBigInteger('id_periode_audit');
             $table->unsignedBigInteger('id_unit');
             $table->unsignedBigInteger('id_tim_auditor');
+            $table->unsignedBigInteger('id_file_audit')->nullable();
             $table->timestamps();
 
             $table->foreign('id_periode_audit')->references('id')->on('periode_audit');
             $table->foreign('id_unit')->references('id')->on('unit');
             $table->foreign('id_tim_auditor')->references('id')->on('tim_auditor');
+            $table->foreign('id_file_audit')->references('id')->on('file_audit');
         });
     }
 

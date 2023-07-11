@@ -24,14 +24,15 @@ class User extends Seeder
         for($i = 0; $i < sizeof($nama); $i++){
             DB::table('users')->insert([
                 'email' => strtolower($nama[$i] . '@staff.uns.ac.id'),
+                'display_name' => $nama[$i] . ' S.Kom',
                 'username' => $nama[$i],
-                'nip' => Str::upper(Str::random(16)),
+                'nip' => mt_rand(1000000000000000, 9999999999999999),
                 'password' => Hash::make(strtolower($nama[$i]. '_123')),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]);
         }
 
-        UserSeeder::factory()->count(25)->create();
+        UserSeeder::factory()->count(50)->create();
     }
 }
