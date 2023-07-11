@@ -10,7 +10,10 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SetupAuditController;
 use App\Http\Controllers\TimAuditorController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PeriodeAudit;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,7 +35,7 @@ Route::get('/blocked', function () {
     return view('blocked.index');
 })->name('blocked')->middleware('auth');
 
-Route::middleware(['auth', 'role:guests'])->group(function () {
+
     // Account
     Route::get('/account', [AccountController::class, 'showAccount'])->name('account');
     
@@ -46,7 +49,7 @@ Route::middleware(['auth', 'role:guests'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard.index');
     })->name('dashboard');
-});
+
 
 Route::middleware(['auth', 'role:administrator'])->group(function () {
     // Setup Audit
@@ -58,6 +61,7 @@ Route::middleware(['auth', 'role:administrator'])->group(function () {
 Route::middleware(['auth', 'role:ketua_auditor'])->group(function () {
     // Input Auditor
     Route::resource('/input-auditor', TimAuditorController::class);
+    
 });
 
 Route::middleware(['auth', 'role:auditor'])->group(function () {
