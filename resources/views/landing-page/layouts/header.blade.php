@@ -28,7 +28,7 @@
             </ul>
           </li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li> -->
-          <li><a class="login scrollto" href="#">LOGIN</a></li>
+          <li><a class="login scrollto" href="/login">LOGIN</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav>
