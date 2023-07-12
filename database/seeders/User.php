@@ -25,6 +25,7 @@ class User extends Seeder
             DB::table('users')->insert([
                 'email' => strtolower($nama[$i] . '@staff.uns.ac.id'),
                 'display_name' => $nama[$i] . ' S.Kom',
+                'id_unit' => mt_rand(1, 68),
                 'username' => $nama[$i],
                 'nip' => mt_rand(1000000000000000, 9999999999999999),
                 'password' => Hash::make(strtolower($nama[$i]. '_123')),

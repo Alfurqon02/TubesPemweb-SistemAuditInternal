@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('laporan_operasional')->nullable();
             $table->string('laporan_kepatuhan')->nullable();
             $table->string('laporan_temuan_rekomendasi')->nullable();
-            $table->string('laporan_follow_up')->nullable();
+            $table->string('laporan_rencana_tindak_lanjut')->nullable();
             $table->string('laporan_hasil_audit')->nullable();
 
             $table->timestamps();

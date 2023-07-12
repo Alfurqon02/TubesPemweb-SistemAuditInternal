@@ -21,8 +21,10 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             Role::class,
-            User::class,
+
             UnitSeeder::class,
+            User::class,
+            NamaFileSeeder::class,
         ]);
     }
 }

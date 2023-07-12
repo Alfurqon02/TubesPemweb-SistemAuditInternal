@@ -14,6 +14,7 @@ use App\Http\Controllers\SetupAuditController;
 use App\Http\Controllers\TimAuditorController;
 use App\Http\Controllers\DetailAuditController;
 use App\Http\Controllers\DetailAuditorController;
+use App\Http\Controllers\FileSetupController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -57,18 +58,19 @@ Route::middleware(['auth'])->group(function () {
 
     //Input Auditor
     Route::resource('/input-auditor/{input_auditor}/input', DetailAuditorController::class);
+    Route::resource('/input-auditor', TimAuditorController::class);
 
-    // Setup Setup
-    // Route::resource('/setup-audit/setup-Setup', SetupAuditController::class);
+    // Downlaod SK
     Route::get('/setup-audit/{setup_audit}/download', [SetupAuditController::class, 'download'])->name('setup-audit.download');
 
     // Setup Unit
     Route::resource('/setup-audit/{setup_audit}/detail', DetailAuditController::class);
-    // Route::delete('/setup-audit/{setup_audit}/detail/{detail}', [DetailAuditController::class, 'destroy']);
-    // Route::get('/setup-audit/{setup_audit}/detail', [DetailAuditController::class, 'search']);
 
-    //Input Auditor
-    Route::resource('/input-auditor', TimAuditorController::class);
+    //Menu Auditor
+    Route::resource('/setup-file', UnitAuditController::class);
+
+    //Setup File
+    Route::resource('/setup-file/{setup_file}/audit', FileSetupController::class);
 });
 
 // Auth::routes();

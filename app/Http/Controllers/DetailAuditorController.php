@@ -20,10 +20,12 @@ class DetailAuditorController extends Controller
         ->join('user_tim', 'users.id', '=', 'user_tim.id_user')
         ->join('tim_auditor', 'user_tim.id_tim', '=', 'tim_auditor.id')
         ->join('unit_audit', 'tim_auditor.id', '=', 'unit_audit.id_tim_auditor')
+        ->join('periode_audit', 'unit_audit.id_periode_audit', '=', 'periode_audit.id')
         ->where('unit_audit.id', '=', $input_auditor->id)
         ->select('users.display_name as nama_auditor',
                 'users.nip as nip_auditor',
                 'users.email as email_auditor',
+                'periode_audit.nama as nama_periode',
                 'user_tim.id as id')
         ->get();
         // return $auditor;
@@ -31,6 +33,7 @@ class DetailAuditorController extends Controller
         return view ('input-auditor.show',[
             'auditor' => $auditor,
             'id'=> $input_auditor->id,
+            'nama_periode' => $auditor[0]->nama_periode,
         ]);
     }
 
