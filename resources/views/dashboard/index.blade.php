@@ -31,9 +31,15 @@
                                 <th>Ketua SPI</th>
                             </tr>
                         </thead>
-
-
-
+                        @foreach ($periode as $p)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $p->nama }}</td>
+                            <td>{{ $p->tanggal_mulai }}</td>
+                            <td>{{ $p->tanggal_selesai }}</td>
+                            <td>{{ $p->nama_ketua_spi }}</td>
+                        <tr>
+                            @endforeach
                     </table>
                 </div>
             </div>

@@ -13,8 +13,6 @@ use App\Http\Controllers\SetupAuditController;
 use App\Http\Controllers\TimAuditorController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PeriodeAudit;
-
 
 Route::get('/', function () {
     return view('landing-page.index');
@@ -36,34 +34,31 @@ Route::get('/blocked', function () {
     return view('blocked.index');
 })->name('blocked')->middleware('auth');
 
+// Dashboard
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});
 
-    // Account
-    Route::get('/account', [AccountController::class, 'showAccount'])->name('account');
-    
-    // Profile
-    Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile');
-    
-    // Task
-    Route::get('/task', [ProfileController::class, 'showTask'])->name('task');
+// Account
+Route::get('/account', [AccountController::class, 'showAccount'])->name('account');
 
-    //API
-    Route::prefix('/api')->group(function(){
+// Profile
+Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile');
+
+// Task
+Route::get('/task', [ProfileController::class, 'showTask'])->name('task');
+
+// API
+Route::prefix('/api')->group(function () {
     Route::get('/users', [APIController::class, 'ApiUser']);
     Route::get('/audit', [APIController::class, 'ApiAudit']);
-    });
-
-    
-    // Dashboard
-    Route::get('/dashboard', function () {
-        return view('dashboard.index');
-    })->name('dashboard');
-
+});
 
 Route::middleware(['auth', 'role:administrator'])->group(function () {
     // Setup Audit
     Route::resource('/setup-audit', SetupAuditController::class);
 
-    //Input Auditor
+    // Input Auditor
     Route::resource('/input-auditor/{input_auditor}/input', DetailAuditorController::class);
 
     // Setup Setup
@@ -73,14 +68,13 @@ Route::middleware(['auth', 'role:administrator'])->group(function () {
     // Route::delete('/setup-audit/{setup_audit}/detail/{detail}', [DetailAuditController::class, 'destroy']);
     // Route::get('/setup-audit/{setup_audit}/detail', [DetailAuditController::class, 'search']);
 
-    //Input Auditor
+    // Input Auditor
     Route::resource('/input-auditor', TimAuditorController::class);
 });
 
 Route::middleware(['auth', 'role:ketua_auditor'])->group(function () {
     // Input Auditor
     Route::resource('/input-auditor', TimAuditorController::class);
-    
 });
 
 Route::middleware(['auth', 'role:auditor'])->group(function () {
