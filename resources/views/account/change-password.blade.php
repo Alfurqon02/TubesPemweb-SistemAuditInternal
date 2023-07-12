@@ -9,6 +9,7 @@
                     <h5 class="card-title">Change Password</h5>
                     <form action="{{ route('account.password.update') }}" method="POST">
                         @csrf
+                        @method('PUT')
                         <div class="mb-3">
                             <label for="current_password" class="form-label">Current Password</label>
                             <input type="password" name="current_password" id="current_password" class="form-control">
