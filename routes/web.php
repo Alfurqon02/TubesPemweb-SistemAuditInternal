@@ -13,6 +13,7 @@ use App\Http\Controllers\SetupAuditController;
 use App\Http\Controllers\TimAuditorController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('landing-page.index');
@@ -40,10 +41,22 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // Account
-Route::get('/account', [AccountController::class, 'showAccount'])->name('account');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile/email', [AccountController::class, 'index'])->name('account.index');
+    Route::get('/account/edit', [AccountController::class, 'edit'])->name('account.edit');
+    Route::put('/account/update', [AccountController::class, 'update'])->name('account.update');
+    Route::get('/account/password/edit', [AccountController::class, 'editPassword'])->name('account.password.edit');
+    Route::put('/account/password/update', [AccountController::class, 'updatePassword'])->name('account.password.update');
+    Route::put('/account/email/update', [AccountController::class, 'updateEmail'])->name('account.email.update');
+
+    //password
+     
+    
+    
+});
 
 // Profile
-Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile');
+Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
 
 // Task
 Route::get('/task', [ProfileController::class, 'showTask'])->name('task');
@@ -58,7 +71,7 @@ Route::middleware(['auth', 'role:administrator'])->group(function () {
     // Setup Audit
     Route::resource('/setup-audit', SetupAuditController::class);
 
-    // Input Auditor
+    // Input 
     Route::resource('/input-auditor/{input_auditor}/input', DetailAuditorController::class);
 
     // Setup Setup
@@ -70,6 +83,21 @@ Route::middleware(['auth', 'role:administrator'])->group(function () {
 
     // Input Auditor
     Route::resource('/input-auditor', TimAuditorController::class);
+
+
+    //ADD USER
+    Route::get('/add-user', [SetupAuditController::class, 'add_user'])->name('admin.user.add');
+    Route::get('/edit-user', [UserController::class, 'edit'])->name('admin.user.edit');
+Route::delete('/admin/user/{user}', [App\Http\Controllers\UserController::class, 'destroy'])->name('admin.user.destroy');
+
+    Route::delete('/admin/user/{user}', [UserController::class, 'destroy'])->name('admin.user.destroy');
+Route::delete('/admin/user/{user}', [UserController::class, 'delete'])->name('admin.user.destroy');
+
+Route::get('/admin/user/create', [UserController::class, 'create'])->name('admin.user.create');
+Route::post('/admin/user', [UserController::class, 'store'])->name('admin.user.store');
+// Route::get('/add-user', [UserController::class, 'create'])->name('admin.user.add');
+Route::get('/admin/users', [UserController::class, 'index'])->name('admin.user.index');
+
 });
 
 Route::middleware(['auth', 'role:ketua_auditor'])->group(function () {

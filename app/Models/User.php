@@ -12,11 +12,12 @@ class User extends Authenticatable implements LaratrustUser
 {
     use HasRolesAndPermissions;
 
-    protected $fillable = [
-        'email',
-        'password',
-        'nip',
-    ];
+protected $fillable = [
+    'email',
+    'password',
+    'nip',
+    'username',
+];
 
     protected $hidden = [
         'password',
@@ -30,5 +31,14 @@ class User extends Authenticatable implements LaratrustUser
     public function roles(): MorphToMany
     {
         return $this->morphToMany(Role::class, 'user', 'role_user');
+    }
+
+    public function attachRole($role)
+    {
+        $role = $role === 'guests' ? null : $role;
+        $role = Role::where('name', $role)->first();
+        if ($role) {
+            $this->roles()->attach($role);
+        }
     }
 }

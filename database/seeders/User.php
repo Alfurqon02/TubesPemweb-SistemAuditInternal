@@ -22,24 +22,15 @@ class User extends Seeder
         $nama = ['Rama', 'Azzam', 'Furqon', 'Hilda'];
         foreach ($nama as $namaUser) {
             DB::table('users')->insert([
-<<<<<<< HEAD
-                'email' => strtolower($nama[$i] . '@staff.uns.ac.id'),
-                'username' => strtolower('08510185572' . $i),
-                'password' => Hash::make(strtolower($nama[$i]. '_123')),
-=======
                 'email' => strtolower($namaUser . '@staff.uns.ac.id'),
                 'username' => $namaUser,
                 'nip' => Str::upper(Str::random(16)),
                 'password' => Hash::make(strtolower($namaUser . '_123')),
->>>>>>> 7b21358baaa92f2b7e3fa528272c659884fb315c
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]);
         }
 
-<<<<<<< HEAD
-        UserSeeder::factory()->count(50)->create();
-=======
         // Buat akun Administrator
         UserModel::create([
             'email' => 'admin@example.com',
@@ -71,6 +62,5 @@ class User extends Seeder
             'nip' => Str::upper(Str::random(16)),
             'password' => Hash::make('password'),
         ])->roles()->attach(Role::where('name', 'auditee')->first());
->>>>>>> 7b21358baaa92f2b7e3fa528272c659884fb315c
     }
 }

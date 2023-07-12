@@ -38,6 +38,14 @@
                         <span class="hide-menu">Setup Audit</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('admin.user.add') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-user"></i>
+                        </span>
+                        <span class="hide-menu">Add User</span>
+                    </a>
+                </li>
                 @endrole
                 @role('ketua_auditor')
                 <li class="nav-small-cap">
