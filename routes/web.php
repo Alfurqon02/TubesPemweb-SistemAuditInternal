@@ -14,6 +14,9 @@ use App\Http\Controllers\TimAuditorController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DetailAuditController;
+use App\Http\Controllers\DetailAuditorController;
+use App\Http\Controllers\FileSetupController;
 
 Route::get('/', function () {
     return view('landing-page.index');
@@ -73,13 +76,11 @@ Route::middleware(['auth', 'role:administrator'])->group(function () {
 
     // Input 
     Route::resource('/input-auditor/{input_auditor}/input', DetailAuditorController::class);
+    Route::resource('/input-auditor', TimAuditorController::class);
 
-    // Setup Setup
-    // Route::resource('/setup-audit/setup-Setup', SetupAuditController::class);
+    // Downlaod SK
     Route::get('/setup-audit/{setup_audit}/download', [SetupAuditController::class, 'download'])->name('setup-audit.download');
     Route::resource('/setup-audit/{setup_audit}/detail', DetailAuditController::class);
-    // Route::delete('/setup-audit/{setup_audit}/detail/{detail}', [DetailAuditController::class, 'destroy']);
-    // Route::get('/setup-audit/{setup_audit}/detail', [DetailAuditController::class, 'search']);
 
     // Input Auditor
     Route::resource('/input-auditor', TimAuditorController::class);
@@ -103,6 +104,11 @@ Route::get('/admin/users', [UserController::class, 'index'])->name('admin.user.i
 Route::middleware(['auth', 'role:ketua_auditor'])->group(function () {
     // Input Auditor
     Route::resource('/input-auditor', TimAuditorController::class);
+    //Menu Auditor
+    Route::resource('/setup-file', UnitAuditController::class);
+
+    //Setup File
+    Route::resource('/setup-file/{setup_file}/audit', FileSetupController::class);
 });
 
 Route::middleware(['auth', 'role:auditor'])->group(function () {

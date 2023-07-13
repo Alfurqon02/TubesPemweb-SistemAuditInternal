@@ -18,10 +18,14 @@ class CreateUsersTable extends Migration
             $table->string('display_name')->nullable();
             $table->string('nip')->unique();
             $table->unsignedBigInteger('role_id')->nullable(); // Change default value to nullable
+            // $table->unsignedBigInteger('id_unit')->nullable();
+            // $table->unsignedBigInteger('id_role')->default(1);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+
+            // $table->foreign('id_unit')->references('id')->on('unit');
         });
     }
 

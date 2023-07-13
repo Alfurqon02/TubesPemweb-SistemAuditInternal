@@ -7,6 +7,7 @@
   <title>Modernize Free</title>
   <link rel="shortcut icon" type="image/png" href="{{ url("assets/images/logos/favicon.png") }}" />
   <link rel="stylesheet" href="{{ url("/assets/css/styles.min.css") }}" />
+  <link rel="stylesheet" href="{{ url("/assets/css/checkbox.css") }}" />
 
   {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css"> --}}
