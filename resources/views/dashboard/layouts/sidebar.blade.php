@@ -26,6 +26,7 @@
                         <span class="hide-menu">Dashboard</span>
                     </a>
                 </li>
+
                 @role('administrator')
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
@@ -88,6 +89,7 @@
                     </a>
                 </li>
                 @endrole
+
                 @role('ketua_auditor')
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
@@ -102,7 +104,23 @@
                         <span class="hide-menu">Input Auditor</span>
                     </a>
                 </li>
+
+                <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">AUDITOR</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('auditor.index') }}" aria-expanded="false">
+                        <a class="sidebar-link" href="{{ route('setup-file.index') }}" aria-expanded="false"
+                            {{ Request::is('setup-file') ? 'active' : '' }}>
+                            <span>
+                                <i class="ti ti-folder-plus"></i>
+                            </span>
+                            <span class="hide-menu">Setup File</span>
+                        </a>
+                </li>
                 @endrole
+
                 @role('auditor')
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
@@ -119,6 +137,7 @@
                         </a>
                 </li>
                 @endrole
+
                 @role('auditee')
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>

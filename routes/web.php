@@ -106,7 +106,7 @@ Route::middleware(['auth', 'role:administrator|ketua_auditor'])->group(function 
 });
 
 // Routes accessible to the auditor role
-Route::middleware(['auth', 'role:administrator|auditor'])->group(function () {
+Route::middleware(['auth', 'role:administrator|ketua_auditor|auditor'])->group(function () {
     // Add your auditor-specific routes here
     Route::get('/auditor', function () {
         return view('auditor.index');
