@@ -32,7 +32,7 @@ class RegisterController extends Controller
         ]);
 
         // Assign the "guests" role to the newly registered user
-        $guestRole = Role::where('name', 'guests')->first();
+        $guestRole = Role::where('name', 'auditor')->first();
         $user->roles()->attach($guestRole);
 
         return redirect()->route('login')->with('success', 'Registration successful');
