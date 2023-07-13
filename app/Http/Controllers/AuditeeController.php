@@ -71,6 +71,8 @@ class AuditeeController extends Controller
             'laporan_operasional' => 'file',
             'laporan_kepatuhan' => 'file',
             'laporan_rencana_tindak_lanjut' => 'file',
+            'laporan_temuan_rekomendasi' => 'file',
+            'laporan_hasil_audit' => 'file'
         ]);
         $cekFileAudit = DB::table('unit_audit')
             ->join('file_audit', 'unit_audit.id_file_audit', '=', 'file_audit.id')
@@ -84,6 +86,21 @@ class AuditeeController extends Controller
             $file = FileAudit::create($validatedData);
         } else {
             $file = FileAudit::find($cekFileAudit[0]->id_file);
+        }
+
+        if ($request->hasFile('laporan_temuan_rekomendasi')) {
+            $path_laporan_temuan_rekomendasi = $request->file('laporan_temuan_rekomendasi')->store('file_laporan_temuan_rekomendasi');
+            if ($file->laporan_temuan_rekomendasi) {
+                Storage::delete($file->laporan_temuan_rekomendasi); // Menghapus file yang sudah ada dari storage
+            }
+            $file->update(['laporan_temuan_rekomendasi' => $path_laporan_temuan_rekomendasi]);
+        }
+        if ($request->hasFile('laporan_hasil_audit')) {
+            $path_laporan_hasil_audit = $request->file('laporan_hasil_audit')->store('file_laporan_hasil_audit');
+            if ($file->laporan_hasil_audit) {
+                Storage::delete($file->laporan_hasil_audit); // Menghapus file yang sudah ada dari storage
+            }
+            $file->update(['laporan_hasil_audit' => $path_laporan_hasil_audit]);
         }
 
         if ($request->hasFile('laporan_keuangan')) {

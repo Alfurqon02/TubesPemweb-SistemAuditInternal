@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('display_name')->nullable();
             $table->string('nip')->unique();
+            $table->unsignedBigInteger('role_id')->nullable(); // Change default value to nullable
             // $table->unsignedBigInteger('id_unit')->nullable();
             // $table->unsignedBigInteger('id_role')->default(1);
             $table->timestamp('email_verified_at')->nullable();
@@ -35,4 +36,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('users');
     }
-};
+}

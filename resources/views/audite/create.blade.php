@@ -33,22 +33,22 @@
                 @endif
                 @if ($file_audit->laporan_keuangan != null)
                     <div class="mb-3">
-                        <a href="">Laporan Keuangan</a>
+                        <a href="{{ route('keuangan.download', $id) }}">Laporan Keuangan</a>
                     </div>
                 @endif
                 @if ($file_audit->laporan_operasional != null)
                     <div class="mb-3">
-                        <a href="">Laporan Operasional</a>
+                        <a href="{{ route('operasional.download', $id) }}">Laporan Operasional</a>
                     </div>
                 @endif
                 @if ($file_audit->laporan_kepatuhan != null)
                     <div class="mb-3">
-                        <a href="">Laporan Kepatuhan</a>
+                        <a href="{{ route('kepatuhan.download', $id) }}">Laporan Kepatuhan</a>
                     </div>
                 @endif
                 @if ($file_audit->laporan_rencana_tindak_lanjut != null)
                     <div class="mb-3">
-                        <a href="">Laporan Rencana Tindak Lanjut</a>
+                        <a href="{{ route('tindak-lanjut.download', $id) }}">Laporan Rencana Tindak Lanjut</a>
                     </div>
                 @endif
             </div>
@@ -61,12 +61,12 @@
                 @endif
                 @if ($file_audit->laporan_temuan_rekomendasi != null)
                     <div class="mb-3">
-                        <a href="">Temuan dan Rekomendasi Tindak Lanjut</a>
+                        <a href="{{ route('temuan.download', $id) }}">Temuan dan Rekomendasi Tindak Lanjut</a>
                     </div>
                 @endif
                 @if ($file_audit->laporan_hasil_audit != null)
                     <div class="mb-3">
-                        <a href="">Hasil Audit</a>
+                        <a href="{{ route('hasil.download', $id) }}">Hasil Audit</a>
                     </div>
                 @endif
             </div>
