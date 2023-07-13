@@ -49,34 +49,64 @@
             <div class="card w-100">
                 <div class="card-body">
                     <h5 class="card-title fw-semibold mb-4">Dokumen Auditee</h5>
-                    @if ($file_audit->laporan_keuangan == null && $file_audit->laporan_operasional == null && $file_audit->laporan_kepatuhan == null && $file_audit->laporan_rencana_tindak_lanjut == null)
+                    @if (
+                        $file_audit->laporan_keuangan == null &&
+                            $file_audit->laporan_operasional == null &&
+                            $file_audit->laporan_kepatuhan == null &&
+                            $file_audit->laporan_rencana_tindak_lanjut == null)
                         <div class="mb-3"> Belum ada File yang Diunggah</div>
                     @endif
                     @if ($file_audit->laporan_keuangan != null)
                         <div class="mb-3">
-                            <a href="">Laporan Keuangan</a>
+                            <a href="{{ route('keuangan.download', $id) }}">Laporan Keuangan</a>
                         </div>
                     @endif
                     @if ($file_audit->laporan_operasional != null)
                         <div class="mb-3">
-                            <a href="">Laporan Operasional</a>
+                            <a href="{{ route('operasional.download', $id) }}">Laporan Operasional</a>
                         </div>
                     @endif
                     @if ($file_audit->laporan_kepatuhan != null)
                         <div class="mb-3">
-                            <a href="">Laporan Kepatuhan</a>
+                            <a href="{{ route('kepatuhan.download', $id) }}">Laporan Kepatuhan</a>
                         </div>
                     @endif
                     @if ($file_audit->laporan_rencana_tindak_lanjut != null)
                         <div class="mb-3">
-                            <a href="">Laporan Rencana Tindak Lanjut</a>
+                            <a href="{{ route('tindak-lanjut.download', $id) }}">Laporan Rencana Tindak Lanjut</a>
                         </div>
                     @endif
                 </div>
             </div>
         </div>
+
         <div class="col d-flex align-items-strech">
             <div class="card w-100">
+                <div class="card-body">
+                    <h5 class="card-title fw-semibold mb-4">Unggah Dokumen</h5>
+                    <form action="{{ route('upload.store', $id) }}" enctype="multipart/form-data" method="POST">
+                        @csrf
+                    @if (
+                        $file_audit->laporan_keuangan != null ||
+                            $file_audit->laporan_operasional != null ||
+                            $file_audit->laporan_kepatuhan != null)
+                            <div class="mb-5">
+                                <label for="file_sk" class="form-label">Upload File Laporan Temuan dan Rekomendasi Tindak
+                                    Lanjut</label>
+                                <input class="form-control" type="file" name="laporan_temuan_rekomendasi">
+                            </div>
+                            @if ($file_audit->laporan_rencana_tindak_lanjut != null)
+                                <div>
+                                    <label for="file_sk" class="form-label">Upload File Hasil Audit</label>
+                                    <input class="form-control" type="file" name="laporan_hasil_audit">
+                                </div>
+                            @endif
+                            <button type="submit" class="btn btn-primary mt-3 d-flex ms-auto">Submit</button>
+                        </form>
+                    @else
+                        <div class="mb-3"> Belum ada File yang Harus Diunggah </div>
+                    @endif
+                </div>
                 <div class="card-body">
                     <h5 class="card-title fw-semibold mb-4">Dokumen Auditor</h5>
                     @if ($file_audit->laporan_temuan_rekomendasi == null && $file_audit->laporan_hasil_audit == null)
@@ -84,16 +114,17 @@
                     @endif
                     @if ($file_audit->laporan_temuan_rekomendasi != null)
                         <div class="mb-3">
-                            <a href="">Temuan dan Rekomendasi Tindak Lanjut</a>
+                            <a href="{{ route('temuan.download', $id) }}">Temuan dan Rekomendasi Tindak Lanjut</a>
                         </div>
                     @endif
                     @if ($file_audit->laporan_hasil_audit != null)
                         <div class="mb-3">
-                            <a href="">Hasil Audit</a>
+                            <a href="{{ route('hasil.download', $id) }}">Hasil Audit</a>
                         </div>
                     @endif
                 </div>
             </div>
+
         </div>
     </div>
 @endsection

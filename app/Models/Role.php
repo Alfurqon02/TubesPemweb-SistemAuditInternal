@@ -6,9 +6,12 @@ use Laratrust\Models\Role as RoleModel;
 
 class Role extends RoleModel
 {
-    public $guarded = ['id'];
+    protected $table = 'roles';
 
-    public function roleUser(){
-        return $this->hasMany(User::class,'id_role', 'id');
+    protected $guarded = ['id'];
+
+    public function roleUser()
+    {
+        return $this->hasMany(User::class, 'id_role', 'id');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\UnitAudit;
+use App\Models\FileAudit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -29,6 +30,15 @@ class FileSetupController extends Controller
             ->join('file_audit', 'unit_audit.id_file_audit', '=', 'file_audit.id')
             ->where('unit_audit.id', '=', $setup_file)
             ->get();
+            // return $fileAudit[0];
+        $file = null;
+            if ($fileAudit[0] == null) {
+                $file = FileAudit::create();
+            } else {
+                $file = FileAudit::find($fileAudit[0]->id_file_audit);
+            }
+
+        DB::table('unit_audit')->where('unit_audit.id', '=', $setup_file)->update(['id_file_audit' => $file->id]);
         return view('menu-auditor.show', [
             'file_audit' => $fileAudit[0],
             'id' => $setup_file,

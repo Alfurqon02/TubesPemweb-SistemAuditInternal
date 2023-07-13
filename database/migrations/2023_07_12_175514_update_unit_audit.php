@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('unit_audit', function (Blueprint $table) {
-            $table->text('parameter_standar_ruang_lingkup');
+            $table->text('parameter_standar_ruang_lingkup')->nullable();
         });
     }
 
