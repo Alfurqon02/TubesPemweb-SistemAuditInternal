@@ -1,13 +1,15 @@
 <?php
 
+
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Seeder;
+use App\Models\User as UserSeeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
-use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class User extends Seeder
 {
@@ -21,15 +23,17 @@ class User extends Seeder
         $nama = ['Rama', 'Azzam', 'Furqon', 'Hilda'];
         for($i = 0; $i < sizeof($nama); $i++){
             DB::table('users')->insert([
-                'fullname' => $nama[$i],
                 'email' => strtolower($nama[$i] . '@staff.uns.ac.id'),
-                'username' => strtolower('08510185572' . $i),
+                'display_name' => $nama[$i] . ' S.Kom',
+                'id_unit' => mt_rand(1, 68),
+                'username' => $nama[$i],
+                'nip' => mt_rand(1000000000000000, 9999999999999999),
                 'password' => Hash::make(strtolower($nama[$i]. '_123')),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]);
         }
-    }
 
-    
+        UserSeeder::factory()->count(50)->create();
+    }
 }
