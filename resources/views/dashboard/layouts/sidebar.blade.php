@@ -66,11 +66,11 @@
                     <span class="hide-menu">AUDITEE</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('showAuditee') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-article"></i>
                         </span>
-                        <span class="hide-menu">Setup Auditee</span>
+                        <span class="hide-menu">Upload File</span>
                     </a>
                 </li>
                 {{-- <li class="sidebar-item">

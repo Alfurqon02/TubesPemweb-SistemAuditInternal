@@ -2,19 +2,21 @@
 use App\Models\TimAuditorCon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\APIController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\AccountController;
-use App\Http\Controllers\APIController;
+use App\Http\Controllers\AuditeeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\FileSetupController;
 use App\Http\Controllers\UnitAuditController;
 use App\Http\Controllers\SetupAuditController;
 use App\Http\Controllers\TimAuditorController;
 use App\Http\Controllers\DetailAuditController;
 use App\Http\Controllers\DetailAuditorController;
-use App\Http\Controllers\FileSetupController;
+use App\Http\Controllers\ShowAuditeeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -71,6 +73,11 @@ Route::middleware(['auth'])->group(function () {
 
     //Setup File
     Route::resource('/setup-file/{setup_file}/audit', FileSetupController::class);
+
+    //Upload File
+    Route::get('/file', [ShowAuditeeController::class, 'index'])->name('showAuditee');
+    Route::resource('/file/{audit}/upload', AuditeeController::class);
+
 });
 
 // Auth::routes();

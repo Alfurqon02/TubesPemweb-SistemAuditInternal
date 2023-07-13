@@ -14,20 +14,28 @@ class FileSetupController extends Controller
     public function index($setup_file)
     {
         $checked = DB::table('jenis_file_audit')
-                        ->join('jenis_file', 'jenis_file_audit.id_jenis_file', '=', 'jenis_file.id')
-                        ->where('id_unit_audit', '=', $setup_file)
-                        ->select('id_jenis_file as id_file',
-                                'jenis_file.nama as nama_file')
-                        ->get();
+            ->join('jenis_file', 'jenis_file_audit.id_jenis_file', '=', 'jenis_file.id')
+            ->where('id_unit_audit', '=', $setup_file)
+            ->select(
+                'id_jenis_file as id_file',
+                'jenis_file.nama as nama_file'
+            )
+            ->get();
         $jenisFile = DB::table('jenis_file')->get();
-        $cekFile = DB::table('');
-        // return $checked;
-        return view ('menu-auditor.show', [
+        $parameter = DB::table('unit_audit')
+            ->where('id', '=', $setup_file)
+            ->get();
+        $fileAudit = DB::table('unit_audit')
+            ->join('file_audit', 'unit_audit.id_file_audit', '=', 'file_audit.id')
+            ->where('unit_audit.id', '=', $setup_file)
+            ->get();
+        return view('menu-auditor.show', [
+            'file_audit' => $fileAudit[0],
             'id' => $setup_file,
             'jenis_file' => $jenisFile,
             'checked' => $checked,
+            'parameter_standar_ruang_lingkup' => $parameter[0]->parameter_standar_ruang_lingkup
         ]);
-
     }
 
     /**
@@ -35,7 +43,6 @@ class FileSetupController extends Controller
      */
     public function create()
     {
-
     }
 
     /**
@@ -45,15 +52,16 @@ class FileSetupController extends Controller
     {
 
         $validatedData = $request->validate([
+            'parameter_standar_ruang_lingkup' => 'required',
             'id_file_audit' => 'required',
         ]);
+
         DB::delete('delete from jenis_file_audit where id_unit_audit = ?', [$setup_file]);
         foreach ($request->id_file_audit as $id_file) {
             DB::insert('insert into jenis_file_audit (id_unit_audit, id_jenis_file) values (?, ?)', [$setup_file, $id_file]);
         }
-
+        DB::table('unit_audit')->where('unit_audit.id', '=', $setup_file)->update(['parameter_standar_ruang_lingkup' => $request->parameter_standar_ruang_lingkup]);
         return redirect(route('audit.index', $setup_file))->with('success', 'Dokumen Telah Diset!');
-
     }
 
     /**
