@@ -36,6 +36,7 @@ class UserController extends Controller
         $request->validate([
             'email' => 'required|email|unique:users',
             'username' => 'required|unique:users',
+            'id_unit' => 'mt_rand(1, 68)',
             'nip' => 'required|unique:users',
             'password' => 'required|min:8',
             'role' => 'required|in:administrator,ketua_auditor,auditor,auditee,guests',
@@ -44,6 +45,7 @@ class UserController extends Controller
         $user = new User();
         $user->email = $request->email;
         $user->username = $request->username;
+        $user->id_unit = mt_rand(1, 68);
         $user->nip = $request->nip;
         $user->password = Hash::make($request->password);
         $user->save();

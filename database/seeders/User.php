@@ -10,6 +10,7 @@ use Illuminate\Support\Carbon;
 use App\Models\User as UserModel;
 use App\Models\Role;
 
+
 class User extends Seeder
 {
     /**
@@ -20,23 +21,25 @@ class User extends Seeder
     public function run()
     {
         $nama = ['Rama', 'Azzam', 'Furqon', 'Hilda'];
-        foreach ($nama as $namaUser) {
-            DB::table('users')->insert([
-                'email' => strtolower($nama[$i] . '@staff.uns.ac.id'),
-                'display_name' => $nama[$i] . ' S.Kom',
-                'id_unit' => mt_rand(1, 68),
-                'username' => $nama[$i],
-                'nip' => mt_rand(1000000000000000, 9999999999999999),
-                'password' => Hash::make(strtolower($nama[$i]. '_123')),
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ]);
-        }
+    foreach ($nama as $i => $namaUser) {
+        DB::table('users')->insert([
+            'email' => strtolower($nama[$i] . '@staff.uns.ac.id'),
+            'display_name' => $nama[$i] . ' S.Kom',
+            'id_unit' => mt_rand(1, 68),
+            'username' => $nama[$i],
+            'nip' => mt_rand(1000000000000000, 9999999999999999),
+            'password' => Hash::make(strtolower($nama[$i]. '_123')),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+    }
+        
 
         // Buat akun Administrator
         UserModel::create([
             'email' => 'admin@example.com',
             'username' => 'admin',
+            'id_unit' => mt_rand(1, 68),
             'nip' => Str::upper(Str::random(16)),
             'password' => Hash::make('password'),
         ])->roles()->attach(Role::where('name', 'administrator')->first());
@@ -45,6 +48,7 @@ class User extends Seeder
         UserModel::create([
             'email' => 'ketua_auditor@example.com',
             'username' => 'ketua_auditor',
+            'id_unit' => mt_rand(1, 68),
             'nip' => Str::upper(Str::random(16)),
             'password' => Hash::make('password'),
         ])->roles()->attach(Role::where('name', 'ketua_auditor')->first());
@@ -53,6 +57,7 @@ class User extends Seeder
         UserModel::create([
             'email' => 'auditor@example.com',
             'username' => 'auditor',
+            'id_unit' => mt_rand(1, 68),
             'nip' => Str::upper(Str::random(16)),
             'password' => Hash::make('password'),
         ])->roles()->attach(Role::where('name', 'auditor')->first());
@@ -61,6 +66,7 @@ class User extends Seeder
         UserModel::create([
             'email' => 'auditee@example.com',
             'username' => 'auditee',
+            'id_unit' => mt_rand(1, 68),
             'nip' => Str::upper(Str::random(16)),
             'password' => Hash::make('password'),
         ])->roles()->attach(Role::where('name', 'auditee')->first());

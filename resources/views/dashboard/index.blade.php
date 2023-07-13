@@ -29,6 +29,7 @@
                                 <th>Tanggal Mulai Audit</th>
                                 <th>Tanggal Selesai Audit</th>
                                 <th>Ketua SPI</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         @foreach ($periode as $p)
@@ -38,6 +39,7 @@
                             <td>{{ $p->tanggal_mulai }}</td>
                             <td>{{ $p->tanggal_selesai }}</td>
                             <td>{{ $p->nama_ketua_spi }}</td>
+                            <td></td>
                         <tr>
                             @endforeach
                     </table>

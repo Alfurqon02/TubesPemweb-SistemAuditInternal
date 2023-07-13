@@ -14,8 +14,6 @@ use App\Http\Controllers\TimAuditorController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\DetailAuditController;
-use App\Http\Controllers\DetailAuditorController;
 use App\Http\Controllers\FileSetupController;
 
 Route::get('/', function () {
@@ -52,10 +50,8 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/account/password/update', [AccountController::class, 'updatePassword'])->name('account.password.update');
     Route::put('/account/email/update', [AccountController::class, 'updateEmail'])->name('account.email.update');
 
-    //password
-     
-    
-    
+    // Password
+    // ...
 });
 
 // Profile
@@ -70,59 +66,60 @@ Route::prefix('/api')->group(function () {
     Route::get('/audit', [APIController::class, 'ApiAudit']);
 });
 
-Route::middleware(['auth', 'role:administrator'])->group(function () {
-    // Setup Audit
-    Route::resource('/setup-audit', SetupAuditController::class);
+// Routes accessible to all roles
+Route::middleware(['auth'])->group(function () {
+    // Add your shared routes here
+});
 
-    // Input 
+// Routes accessible to the administrator role
+Route::middleware(['auth', 'role:administrator'])->group(function () {
+    // Add your administrator-specific routes here
+    Route::resource('/setup-audit', SetupAuditController::class);
     Route::resource('/input-auditor/{input_auditor}/input', DetailAuditorController::class);
     Route::resource('/input-auditor', TimAuditorController::class);
-
-    // Downlaod SK
     Route::get('/setup-audit/{setup_audit}/download', [SetupAuditController::class, 'download'])->name('setup-audit.download');
     Route::resource('/setup-audit/{setup_audit}/detail', DetailAuditController::class);
-
-    // Input Auditor
-    Route::resource('/input-auditor', TimAuditorController::class);
-
-
-    //ADD USER
     Route::get('/add-user', [SetupAuditController::class, 'add_user'])->name('admin.user.add');
     Route::get('/edit-user', [UserController::class, 'edit'])->name('admin.user.edit');
-Route::delete('/admin/user/{user}', [App\Http\Controllers\UserController::class, 'destroy'])->name('admin.user.destroy');
-
     Route::delete('/admin/user/{user}', [UserController::class, 'destroy'])->name('admin.user.destroy');
-Route::delete('/admin/user/{user}', [UserController::class, 'delete'])->name('admin.user.destroy');
-
-Route::get('/admin/user/create', [UserController::class, 'create'])->name('admin.user.create');
-Route::post('/admin/user', [UserController::class, 'store'])->name('admin.user.store');
-// Route::get('/add-user', [UserController::class, 'create'])->name('admin.user.add');
-Route::get('/admin/users', [UserController::class, 'index'])->name('admin.user.index');
-
-});
-
-Route::middleware(['auth', 'role:ketua_auditor'])->group(function () {
-    // Input Auditor
+    Route::delete('/admin/user/{user}', [UserController::class, 'delete'])->name('admin.user.destroy');
+    Route::get('/admin/user/create', [UserController::class, 'create'])->name('admin.user.create');
+    Route::post('/admin/user', [UserController::class, 'store'])->name('admin.user.store');
+    Route::get('/admin/users', [UserController::class, 'index'])->name('admin.user.index');
     Route::resource('/input-auditor', TimAuditorController::class);
-    //Menu Auditor
     Route::resource('/setup-file', UnitAuditController::class);
-
-    //Setup File
     Route::resource('/setup-file/{setup_file}/audit', FileSetupController::class);
-});
-
-Route::middleware(['auth', 'role:auditor'])->group(function () {
-    // Auditor Index
     Route::get('/auditor', function () {
         return view('auditor.index');
     })->name('auditor.index');
-});
-
-Route::middleware(['auth', 'role:auditee'])->group(function () {
-    // Auditee Index
     Route::get('/auditee', function () {
         return view('auditee.index');
     })->name('auditee.index');
 });
 
+// Routes accessible to the ketua_auditor role
+Route::middleware(['auth', 'role:administrator|ketua_auditor'])->group(function () {
+    // Add your ketua_auditor-specific routes here
+    Route::resource('/input-auditor', TimAuditorController::class);
+    Route::resource('/setup-file', UnitAuditController::class);
+    Route::resource('/setup-file/{setup_file}/audit', FileSetupController::class);
+});
+
+// Routes accessible to the auditor role
+Route::middleware(['auth', 'role:administrator|auditor'])->group(function () {
+    // Add your auditor-specific routes here
+    Route::get('/auditor', function () {
+        return view('auditor.index');
+    })->name('auditor.index');
+});
+
+// Routes accessible to the auditee role
+Route::middleware(['auth', 'role:administrator|auditee'])->group(function () {
+    // Add your auditee-specific routes here
+    Route::get('/auditee', function () {
+        return view('auditee.index');
+    })->name('auditee.index');
+});
+
+// Home
 Route::get('/home', [HomeController::class, 'index'])->name('home');
