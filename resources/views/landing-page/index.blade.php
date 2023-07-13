@@ -55,7 +55,16 @@
                 </li>
 
                 <li>
-                  <a data-bs-toggle="collapse" data-bs-target="#accordion-list-2" class="collapsed"><span>02</span> Kualitas <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                  <a data-bs-toggle="collapse" data-bs-target="#accordion-list-2" class="collapsed"><span>02</span> Pengalaman <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                  <div id="accordion-list-2" class="collapse" data-bs-parent=".accordion-list">
+                    <p>
+                      Dengan pengalaman yang luas dalam melakukan audit sistem di berbagai institusi pendidikan, tim kami telah berhasil mengidentifikasi risiko, menemukan kelemahan, dan memberikan rekomendasi perbaikan yang efektif.
+                    </p>
+                  </div>
+                </li>
+
+                <li>
+                  <a data-bs-toggle="collapse" data-bs-target="#accordion-list-2" class="collapsed"><span>03</span> Kualitas <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                   <div id="accordion-list-2" class="collapse" data-bs-parent=".accordion-list">
                     <p>
                       Kami memastikan bahwa setiap audit yang kami lakukan mengikuti standar tertinggi dalam industri ini. Kami menjaga kualitas audit kami melalui metodologi yang teruji, pemahaman mendalam tentang teknologi terbaru, dan pembaruan terhadap kebijakan dan regulasi terkini.
@@ -64,7 +73,7 @@
                 </li>
 
                 <li>
-                  <a data-bs-toggle="collapse" data-bs-target="#accordion-list-3" class="collapsed"><span>03</span> Kerahasiaan <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                  <a data-bs-toggle="collapse" data-bs-target="#accordion-list-3" class="collapsed"><span>04</span> Kerahasiaan <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                   <div id="accordion-list-3" class="collapse" data-bs-parent=".accordion-list">
                     <p>
                       Kami sangat menghargai kerahasiaan dan privasi data kampus. Tim audit kami mematuhi standar etika yang tinggi dan menjaga kerahasiaan semua informasi yang diberikan kepada kami selama proses audit.
@@ -73,7 +82,7 @@
                 </li>
 
                 <li>
-                  <a data-bs-toggle="collapse" data-bs-target="#accordion-list-3" class="collapsed"><span>04</span> Misi Kami <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                  <a data-bs-toggle="collapse" data-bs-target="#accordion-list-3" class="collapsed"><span>05</span> Misi Kami <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                   <div id="accordion-list-3" class="collapse" data-bs-parent=".accordion-list">
                     <p>
                       Misi tim audit kampus kami adalah untuk meningkatkan keamanan, efisiensi, dan integritas sistem informasi di kampus. Kami berkomitmen untuk menjadi mitra yang andal dalam mendukung pencapaian tujuan strategis kampus melalui audit sistem yang terpercaya.
