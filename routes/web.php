@@ -98,7 +98,7 @@ Route::middleware(['auth', 'role:administrator'])->group(function () {
 });
 
 // Routes accessible to the ketua_auditor role
-Route::middleware(['auth', 'role:administrator|ketua_auditor'])->group(function () {
+Route::middleware(['auth', 'role:administrator|ketua_auditor|auditor'])->group(function () {
     // Add your ketua_auditor-specific routes here
     Route::resource('/input-auditor', TimAuditorController::class);
     Route::resource('/setup-file', UnitAuditController::class);

@@ -67,14 +67,10 @@
                     <span class="hide-menu">AUDITOR</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('auditor.index') }}" aria-expanded="false">
-                        <a class="sidebar-link" href="{{ route('setup-file.index') }}" aria-expanded="false"
-                            {{ Request::is('setup-file') ? 'active' : '' }}>
-                            <span>
-                                <i class="ti ti-folder-plus"></i>
-                            </span>
-                            <span class="hide-menu">Setup File</span>
-                        </a>
+                    <a class="sidebar-link" href="{{ route('setup-file.index') }}" aria-expanded="false"
+                        {{ Request::is('setup-file') ? 'active' : '' }}>
+                        <span class="hide-menu">Setup File</span>
+                    </a>
                 </li>
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
@@ -110,14 +106,13 @@
                     <span class="hide-menu">AUDITOR</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('auditor.index') }}" aria-expanded="false">
-                        <a class="sidebar-link" href="{{ route('setup-file.index') }}" aria-expanded="false"
-                            {{ Request::is('setup-file') ? 'active' : '' }}>
-                            <span>
-                                <i class="ti ti-folder-plus"></i>
-                            </span>
-                            <span class="hide-menu">Setup File</span>
-                        </a>
+                    <a class="sidebar-link" href="{{ route('setup-file.index') }}" aria-expanded="false"
+                        {{ Request::is('setup-file') ? 'active' : '' }}>
+                        <span>
+                            <i class="ti ti-folder-plus"></i>
+                        </span>
+                        <span class="hide-menu">Setup File</span>
+                    </a>
                 </li>
                 @endrole
 
@@ -127,14 +122,13 @@
                     <span class="hide-menu">AUDITOR</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('auditor.index') }}" aria-expanded="false">
-                        <a class="sidebar-link" href="{{ route('setup-file.index') }}" aria-expanded="false"
-                            {{ Request::is('setup-file') ? 'active' : '' }}>
-                            <span>
-                                <i class="ti ti-folder-plus"></i>
-                            </span>
-                            <span class="hide-menu">Setup File</span>
-                        </a>
+                    <a class="sidebar-link" href="{{ route('setup-file.index') }}" aria-expanded="false"
+                        {{ Request::is('setup-file') ? 'active' : '' }}>
+                        <span>
+                            <i class="ti ti-folder-plus"></i>
+                        </span>
+                        <span class="hide-menu">Setup File</span>
+                    </a>
                 </li>
                 @endrole
 
