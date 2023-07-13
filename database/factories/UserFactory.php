@@ -24,6 +24,7 @@ class UserFactory extends Factory
             'username' => fake()->userName(),
             'display_name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
+            'id_unit' => mt_rand(1, 68),
             'nip' => mt_rand(1000000000000000, 9999999999999999),
             'email_verified_at' => now(),
             'password' =>bcrypt('12345678'), // password

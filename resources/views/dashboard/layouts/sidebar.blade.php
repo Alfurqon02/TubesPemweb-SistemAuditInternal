@@ -18,7 +18,7 @@
                     <span class="hide-menu">Home</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/dashboard" aria-expanded="false">
+                    <a class="sidebar-link" href="/dashboard" aria-expanded="false" {{ Request::is('dashboard') ? 'active' : '' }}>
                         <span>
                             <i class="ti ti-layout-dashboard"></i>
                         </span>
@@ -30,7 +30,7 @@
                     <span class="hide-menu">ADMINISTRATOR</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('setup-audit.index') }}" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('setup-audit.index') }}" aria-expanded="false" {{ Request::is('setup-audit') ? 'active' : '' }}>
                         <span>
                             <i class="ti ti-article"></i>
                         </span>
@@ -42,7 +42,7 @@
                     <span class="hide-menu">KETUA AUDITOR</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('input-auditor.index') }}" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('input-auditor.index') }}" aria-expanded="false" {{ Request::is('/input-auditor') ? 'active' : '' }}>
                         <span>
                             <i class="ti ti-user-plus"></i>
                         </span>
@@ -54,11 +54,11 @@
                     <span class="hide-menu">AUDITOR</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('setup-file.index') }}" aria-expanded="false" {{ Request::is('setup-file') ? 'active' : '' }}>
                         <span>
-                            <i class="ti ti-article"></i>
+                            <i class="ti ti-folder-plus"></i>
                         </span>
-                        <span class="hide-menu">Setup Auditor</span>
+                        <span class="hide-menu">Setup File</span>
                     </a>
                 </li>
                 <li class="nav-small-cap">
@@ -66,11 +66,11 @@
                     <span class="hide-menu">AUDITEE</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('showAuditee') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-article"></i>
                         </span>
-                        <span class="hide-menu">Setup Auditee</span>
+                        <span class="hide-menu">Upload File</span>
                     </a>
                 </li>
                 {{-- <li class="sidebar-item">

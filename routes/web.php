@@ -2,18 +2,21 @@
 use App\Models\TimAuditorCon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\APIController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\AccountController;
-use App\Http\Controllers\APIController;
+use App\Http\Controllers\AuditeeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\FileSetupController;
 use App\Http\Controllers\UnitAuditController;
 use App\Http\Controllers\SetupAuditController;
 use App\Http\Controllers\TimAuditorController;
 use App\Http\Controllers\DetailAuditController;
 use App\Http\Controllers\DetailAuditorController;
+use App\Http\Controllers\ShowAuditeeController;
 
 Route::get('/', function () {
     return view('landing-page.index');
@@ -57,18 +60,24 @@ Route::middleware(['auth'])->group(function () {
 
     //Input Auditor
     Route::resource('/input-auditor/{input_auditor}/input', DetailAuditorController::class);
+    Route::resource('/input-auditor', TimAuditorController::class);
 
-    // Setup Setup
-    // Route::resource('/setup-audit/setup-Setup', SetupAuditController::class);
+    // Downlaod SK
     Route::get('/setup-audit/{setup_audit}/download', [SetupAuditController::class, 'download'])->name('setup-audit.download');
 
     // Setup Unit
     Route::resource('/setup-audit/{setup_audit}/detail', DetailAuditController::class);
-    // Route::delete('/setup-audit/{setup_audit}/detail/{detail}', [DetailAuditController::class, 'destroy']);
-    // Route::get('/setup-audit/{setup_audit}/detail', [DetailAuditController::class, 'search']);
 
-    //Input Auditor
-    Route::resource('/input-auditor', TimAuditorController::class);
+    //Menu Auditor
+    Route::resource('/setup-file', UnitAuditController::class);
+
+    //Setup File
+    Route::resource('/setup-file/{setup_file}/audit', FileSetupController::class);
+
+    //Upload File
+    Route::get('/file', [ShowAuditeeController::class, 'index'])->name('showAuditee');
+    Route::resource('/file/{audit}/upload', AuditeeController::class);
+
 });
 
 // Auth::routes();

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_unit');
             $table->unsignedBigInteger('id_tim_auditor');
             $table->unsignedBigInteger('id_file_audit')->nullable();
+            $table->boolean('is_closed')->default(0);
             $table->timestamps();
 
             $table->foreign('id_periode_audit')->references('id')->on('periode_audit');
