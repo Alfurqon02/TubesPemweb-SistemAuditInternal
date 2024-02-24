@@ -18,7 +18,9 @@ class AuditeeController extends Controller
 
     public function index()
     {
-        // return view ('audite.create');
+        return view ('audite.create',[
+            'audit'=>Unit::all(),
+        ]);
     }
 
     /**

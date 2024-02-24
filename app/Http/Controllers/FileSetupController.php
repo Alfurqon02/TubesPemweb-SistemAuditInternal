@@ -32,7 +32,7 @@ class FileSetupController extends Controller
             ->get();
             // return $fileAudit[0];
         $file = null;
-            if ($fileAudit[0] == null) {
+            if (sizeof($fileAudit) < 1) {
                 $file = FileAudit::create();
             } else {
                 $file = FileAudit::find($fileAudit[0]->id_file_audit);
@@ -40,7 +40,7 @@ class FileSetupController extends Controller
 
         DB::table('unit_audit')->where('unit_audit.id', '=', $setup_file)->update(['id_file_audit' => $file->id]);
         return view('menu-auditor.show', [
-            'file_audit' => $fileAudit[0],
+            'file_audit' => $file,
             'id' => $setup_file,
             'jenis_file' => $jenisFile,
             'checked' => $checked,
@@ -104,5 +104,14 @@ class FileSetupController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function close($setup_audit){
+
+        DB::table('unit_audit')
+                    ->where('unit_audit.id', '=', $setup_audit)
+                    ->update(['is_closed' => 1]);
+        return redirect (route('input-auditor.index'))->with('success', 'Audit Telah di Close');
+
     }
 }

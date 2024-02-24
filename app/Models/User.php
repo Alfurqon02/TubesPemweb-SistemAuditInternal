@@ -2,22 +2,23 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Laratrust\Contracts\LaratrustUser;
 use Laratrust\Traits\HasRolesAndPermissions;
 
 class User extends Authenticatable implements LaratrustUser
-{   
+{
     use HasRolesAndPermissions;
 
-protected $fillable = [
-    'email',
-    'password',
-    'nip',
-    'username',
-];
+    protected $fillable = [
+        'email',
+        'password',
+        'nip',
+        'username',
+        'display_name',
+        'id_unit',
+    ];
 
     protected $hidden = [
         'password',
@@ -31,14 +32,5 @@ protected $fillable = [
     public function roles(): MorphToMany
     {
         return $this->morphToMany(Role::class, 'user', 'role_user');
-    }
-
-    public function attachRole($role)
-    {
-        $role = $role === 'guests' ? null : $role;
-        $role = Role::where('name', $role)->first();
-        if ($role) {
-            $this->roles()->attach($role);
-        }
     }
 }

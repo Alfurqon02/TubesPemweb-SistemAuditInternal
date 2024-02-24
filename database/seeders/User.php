@@ -22,22 +22,18 @@ class User extends Seeder
     public function run()
     {
         $nama = ['Rama', 'Azzam', 'Furqon', 'Hilda'];
-        for($i = 0; $i < sizeof($nama); $i++){
-            DB::table('users')->insert([
+        foreach ($nama as $i => $namaUser) {
+            UserModel::create([
                 'email' => strtolower($nama[$i] . '@staff.uns.ac.id'),
                 'display_name' => $nama[$i] . ' S.Kom',
                 'id_unit' => mt_rand(1, 68),
                 'username' => $nama[$i],
                 'nip' => mt_rand(1000000000000000, 9999999999999999),
-                'password' => Hash::make(strtolower($nama[$i]. '_123')),
+                'password' => Hash::make(strtolower($nama[$i] . '_123')),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
-            ]);
-        }
-
-        // UserSeeder::factory()->count(50)->create();
-
-
+            ])->roles()->attach(Role::where('name', 'auditor')->first());
+    }
 
         // Buat akun Administrator
         UserModel::create([

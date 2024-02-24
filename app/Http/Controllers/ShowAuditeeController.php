@@ -17,8 +17,7 @@ class ShowAuditeeController extends Controller
         ->join('user_tim', 'tim_auditor.id','=','user_tim.id_tim')
         ->join('users', 'user_tim.id_user','=','users.id')
         // ->join('file_audit', 'unit_audit.id_file','=','file_audit.id')
-        ->where([['users.id_unit', '=', $idUnit],
-                    ['unit_audit.id_unit', '=', $idUnit]])
+        ->where('unit_audit.id_unit', '=', $idUnit)
         ->select('periode_audit.nama as nama_periode',
                 'unit.nama as nama_unit',
                 'unit_audit.id as id',
@@ -26,6 +25,7 @@ class ShowAuditeeController extends Controller
                 'tim_auditor.nama_ketua_tim as nama_ketua_tim',
                 'periode_audit.nama_ketua_spi as nama_ketua_spi',)
         ->get();
+        // dd($audit);
         // return $idUnit;
         // $periode = PeriodeAudit::all()->where('id', '=', $setup_audit->id);
         return view('audite.index', [

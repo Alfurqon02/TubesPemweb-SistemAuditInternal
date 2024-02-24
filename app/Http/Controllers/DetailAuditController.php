@@ -70,6 +70,7 @@ class DetailAuditController extends Controller
         $idPeriode = $setup_audit->id;
         $saveUnit = DB::select('select id from unit where nama = ?', [$nama_unit]);
         $idUser = DB::select('select id from users where nip = ?', [$timAuditor->nip_ketua_tim]);
+        // dd($idUser[0]);
 
         if (!empty($saveUnit)) {
             $idUnit = $saveUnit[0]->id;
@@ -80,6 +81,7 @@ class DetailAuditController extends Controller
         }
 
         DB::insert('insert into user_tim (id_user, id_tim) values (?, ?)', [$idUser[0]->id, $idTim]);
+        DB::insert('insert into role_user (role_id, user_id, user_type) values (?, ?, ?)', [3, $idUser[0]->id, 'App\Models\User']);
 
         return redirect(route('detail.index', $setup_audit->id))->with('success', 'Unit Audit Telah ditambahkan!');
     }

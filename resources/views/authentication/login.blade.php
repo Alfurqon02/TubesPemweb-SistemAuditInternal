@@ -23,7 +23,7 @@
                                 <a href="." class="text-nowrap logo-img text-center d-block py-3 w-100">
                                     <img src="../assets/images/logos/logo-auditin.svg" width="180" alt="">
                                 </a>
-                                <p class="text-center">Your Social Campaigns</p>
+                                <p class="text-center">Sistem Audit Internal</p>
                                 <form method="POST" action="{{ route('login.submit') }}">
                                     @csrf
                                     <div class="mb-3">
@@ -40,7 +40,7 @@
                                     <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Sign
                                         In</button>
                                     <div class="d-flex align-items-center justify-content-center">
-                                        <p class="fs-4 mb-0 fw-bold">New to Modernize?</p>
+                                        <p class="fs-4 mb-0 fw-bold"></p>
                                         <a class="text-primary fw-bold ms-2" href="{{ route('register') }}">Create
                                             an account</a>
                                     </div>

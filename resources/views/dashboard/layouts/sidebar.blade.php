@@ -18,26 +18,27 @@
                     <span class="hide-menu">Home</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/dashboard" aria-expanded="false" {{ Request::is('dashboard') ? 'active' : '' }}>
+                    <a class="sidebar-link" href="/dashboard" aria-expanded="false" {{ Request::is('dashboard*') ? 'active' : '' }}>
                         <span>
                             <i class="ti ti-layout-dashboard"></i>
                         </span>
                         <span class="hide-menu">Dashboard</span>
                     </a>
                 </li>
+                @role('administrator')
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">ADMINISTRATOR</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('setup-audit.index') }}" aria-expanded="false" {{ Request::is('setup-audit') ? 'active' : '' }}>
+                    <a class="sidebar-link" href="{{ route('setup-audit.index') }}" aria-expanded="false" {{ Request::is('setup-audit*') ? 'active' : '' }}>
                         <span>
                             <i class="ti ti-article"></i>
                         </span>
                         <span class="hide-menu">Setup Audit</span>
                     </a>
                 </li>
-                <li class="nav-small-cap">
+                {{-- <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">KETUA AUDITOR</span>
                 </li>
@@ -48,13 +49,13 @@
                         </span>
                         <span class="hide-menu">Input Auditor</span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">AUDITOR</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('setup-file.index') }}" aria-expanded="false" {{ Request::is('setup-file') ? 'active' : '' }}>
+                    <a class="sidebar-link" href="{{ route('setup-file.index') }}" aria-expanded="false" {{ Request::is('setup-file*') ? 'active' : '' }}>
                         <span>
                             <i class="ti ti-folder-plus"></i>
                         </span>
@@ -73,78 +74,52 @@
                         <span class="hide-menu">Upload File</span>
                     </a>
                 </li>
-                {{-- <li class="sidebar-item">
-            <a class="sidebar-link" href="./ui-alerts.html" aria-expanded="false">
-              <span>
-                <i class="ti ti-alert-circle"></i>
-              </span>
-              <span class="hide-menu">Alerts</span>
-            </a>
-          </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="./ui-card.html" aria-expanded="false">
-              <span>
-                <i class="ti ti-cards"></i>
-              </span>
-              <span class="hide-menu">Card</span>
-            </a>
-          </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="./ui-forms.html" aria-expanded="false">
-              <span>
-                <i class="ti ti-file-description"></i>
-              </span>
-              <span class="hide-menu">Forms</span>
-            </a>
-          </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="./ui-typography.html" aria-expanded="false">
-              <span>
-                <i class="ti ti-typography"></i>
-              </span>
-              <span class="hide-menu">Typography</span>
-            </a>
-          </li>
-          <li class="nav-small-cap">
-            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-            <span class="hide-menu">AUTH</span>
-          </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
-              <span>
-                <i class="ti ti-login"></i>
-              </span>
-              <span class="hide-menu">Login</span>
-            </a>
-          </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="./authentication-register.html" aria-expanded="false">
-              <span>
-                <i class="ti ti-user-plus"></i>
-              </span>
-              <span class="hide-menu">Register</span>
-            </a>
-          </li>
-          <li class="nav-small-cap">
-            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-            <span class="hide-menu">EXTRA</span>
-          </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="./icon-tabler.html" aria-expanded="false">
-              <span>
-                <i class="ti ti-mood-happy"></i>
-              </span>
-              <span class="hide-menu">Icons</span>
-            </a>
-          </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="./sample-page.html" aria-expanded="false">
-              <span>
-                <i class="ti ti-aperture"></i>
-              </span>
-              <span class="hide-menu">Sample Page</span>
-            </a>
-          </li> --}}
+                @endrole
+                @role('ketua_auditor')
+                <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">KETUA AUDITOR</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('input-auditor.index') }}" aria-expanded="false"
+                        {{ Request::is('/input-auditor*') ? 'active' : '' }}>
+                        <span>
+                            <i class="ti ti-user-plus"></i>
+                        </span>
+                        <span class="hide-menu">Input Auditor</span>
+                    </a>
+                </li>
+                @endrole
+                @role('auditor')
+                <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">AUDITOR</span>
+                </li>
+                <li class="sidebar-item">
+                    {{-- <a class="sidebar-link" href="{{ route('auditor.index') }}" aria-expanded="false"> --}}
+                        <a class="sidebar-link" href="{{ route('setup-file.index') }}" aria-expanded="false"
+                            {{ Request::is('setup-file*') ? 'active' : '' }}>
+                            <span>
+                                <i class="ti ti-folder-plus"></i>
+                            </span>
+                            <span class="hide-menu">Setup File</span>
+                        </a>
+                </li>
+                @endrole
+                @role('auditee')
+                <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">AUDITEE</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('auditee.index') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-article"></i>
+                        </span>
+                        <span class="hide-menu">Setup Auditee</span>
+                    </a>
+                </li>
+                @endrole
             </ul>
         </nav>
         <!-- End Sidebar navigation -->
